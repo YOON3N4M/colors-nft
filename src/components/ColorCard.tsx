@@ -70,7 +70,7 @@ export default function ColorCard(props: ColorCardProps) {
 				</Box>
 			) : (
 				<Box
-					as={motion.div}
+					as={motion.button}
 					initial="offscreen"
 					whileInView="onscreenOpacity"
 					variants={scrollFadeInVariants}

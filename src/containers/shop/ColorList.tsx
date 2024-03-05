@@ -70,7 +70,8 @@ function ColorList(props: ColorListProps) {
 				columns={type === 'card' ? 5 : 6}
 				spacingY={type === 'text' ? 0 : 8}
 				justifyContent={'center'}
-				placeItems={'center'}
+				placeItems={type === 'text' ? 'start' : 'center'}
+				gap={type === 'text' ? 2 : 'initial'}
 			>
 				{/* {colorsArr.map((color) => (
 					<ColorCard
