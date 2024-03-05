@@ -4,13 +4,12 @@ import Contents from '@/components/layout/Contents'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import ColorCard, { ColorCardType } from '@/components/ColorCard'
 import FilterColor from './FilterColor'
+import ColorList from './ColorList'
 
 export default function ContainerShop() {
-	const colorsArr = Object.entries(colors).map((color) => color)
-
 	const [type, setType] = useState<ColorCardType>('card')
 	const [filterLightness, setFilterLightness] = useState<string | null>(null)
-	const [filterHue, setFilterHue] = useState<string | null>(null)
+	const [filterHue, setFilterHue] = useState<string | null>('01')
 
 	return (
 		<Contents>
@@ -22,24 +21,13 @@ export default function ContainerShop() {
 				setFilterLightness={setFilterLightness}
 				setFilterHue={setFilterHue}
 			/>
-			<Box textAlign={'end'} color={'gray'}>
-				{colorsArr.length}
-			</Box>
+			<Box textAlign={'end'} color={'gray'}></Box>
 			<Box maxH={'1000px'} overflowY={'auto'}>
-				<SimpleGrid
-					columns={5}
-					spacingY={8}
-					justifyContent={'center'}
-					placeItems={'center'}
-				>
-					{colorsArr.map((color) => (
-						<ColorCard
-							name={color[1].name}
-							numbering={color[0]}
-							hex={color[1].hex}
-						/>
-					))}
-				</SimpleGrid>
+				<ColorList
+					type={type}
+					filterHue={filterHue}
+					filterLightness={filterLightness}
+				/>
 			</Box>
 		</Contents>
 	)

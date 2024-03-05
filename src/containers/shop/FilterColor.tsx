@@ -38,6 +38,7 @@ function FilterColor(props: FilterColorProps) {
 							_hover={{ color: 'black' }}
 							__css={colorTransition}
 							onClick={() => setType('card')}
+							fontStyle={'italic'}
 						>
 							card
 						</Box>
@@ -47,6 +48,7 @@ function FilterColor(props: FilterColorProps) {
 							_hover={{ color: 'black' }}
 							__css={colorTransition}
 							onClick={() => setType('square')}
+							fontStyle={'italic'}
 						>
 							square
 						</Box>
@@ -55,6 +57,16 @@ function FilterColor(props: FilterColorProps) {
 				<Flex>
 					<Box>lightness</Box>
 					<Flex ml={1} gap={2}>
+						<Box
+							as="button"
+							color={filterLightness === null ? 'black' : '#808080b8'}
+							_hover={{ color: 'black' }}
+							__css={colorTransition}
+							onClick={() => setFilterLightness(null)}
+							fontStyle={'italic'}
+						>
+							all
+						</Box>
 						{lightness.map((level) => (
 							<Box
 								as="button"
@@ -62,6 +74,7 @@ function FilterColor(props: FilterColorProps) {
 								_hover={{ color: 'black' }}
 								__css={colorTransition}
 								onClick={() => setFilterLightness(level)}
+								fontStyle={'italic'}
 							>
 								{level}
 							</Box>
@@ -78,6 +91,7 @@ function FilterColor(props: FilterColorProps) {
 								_hover={{ color: 'black' }}
 								__css={colorTransition}
 								onClick={() => setFilterHue(level)}
+								fontStyle={'italic'}
 							>
 								{level}
 							</Box>
