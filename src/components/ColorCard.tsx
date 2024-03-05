@@ -26,12 +26,6 @@ export default function ColorCard(props: ColorCardProps) {
 				duration: 0.8,
 			},
 		},
-		onscreenOpacity: {
-			opacity: 1,
-			transition: {
-				duration: 0.8,
-			},
-		},
 	}
 
 	function nameConvert(str: string) {}
@@ -72,7 +66,7 @@ export default function ColorCard(props: ColorCardProps) {
 				<Box
 					as={motion.button}
 					initial="offscreen"
-					whileInView="onscreenOpacity"
+					whileInView="onscreen"
 					variants={scrollFadeInVariants}
 					display={'inline'}
 					fontSize={80}
@@ -80,7 +74,7 @@ export default function ColorCard(props: ColorCardProps) {
 					fontWeight={500}
 					_hover={{ color: `#${hex}` }}
 					cursor={'pointer'}
-					color={`#808080b8`}
+					color={`#80808073`}
 					transition={'color'}
 					transitionDuration={'200ms'}
 				>{`${name},`}</Box>
