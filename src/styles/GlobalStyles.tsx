@@ -1,34 +1,42 @@
-import { Global, css } from "@emotion/react";
+import { Global, css } from '@emotion/react'
 
 const style = css`
-  @font-face {
-    font-family: "Arita-dotum-Medium";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
+	@font-face {
+		font-family: 'Arita-dotum-Medium';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff')
+			format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
 
-  html {
-    font-family: "Pretendard Variable";
-  }
+	@font-face {
+		font-family: 'ChosunSm';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff')
+			format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
 
-  * {
-    font-family: "Pretendard Variable" !important;
-  }
+	html {
+		font-family: 'Pretendard Variable';
+	}
 
-  body {
-  }
+	* {
+		font-family: 'Pretendard Variable' !important;
+	}
 
-  a {
-    text-decoration: none;
-  }
+	body {
+	}
 
-  a:hover {
-  }
+	a {
+		text-decoration: none;
+	}
 
-  //스크롤바 스타일링
-  /* *::-webkit-scrollbar {
+	a:hover {
+	}
+
+	//스크롤바 스타일링
+	/* *::-webkit-scrollbar {
     width: 5px;
     background-color: #ffffff;
   }
@@ -37,15 +45,15 @@ const style = css`
     border-radius: 10px;
   } */
 
-  .no-scroll-bar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-  .no-scroll-bar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-`;
+	.no-scroll-bar::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera*/
+	}
+	.no-scroll-bar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+`
 
 export default function GlobalStyles() {
-  return <Global styles={style} />;
+	return <Global styles={style} />
 }

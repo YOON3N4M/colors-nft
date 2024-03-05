@@ -52,6 +52,16 @@ function FilterColor(props: FilterColorProps) {
 						>
 							square
 						</Box>
+						<Box
+							as="button"
+							color={type === 'text' ? 'black' : '#808080b8'}
+							_hover={{ color: 'black' }}
+							__css={colorTransition}
+							onClick={() => setType('text')}
+							fontStyle={'italic'}
+						>
+							text
+						</Box>
 					</Flex>
 				</Flex>
 				<Flex>

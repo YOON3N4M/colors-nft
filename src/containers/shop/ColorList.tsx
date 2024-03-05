@@ -45,11 +45,15 @@ function ColorList(props: ColorListProps) {
 			const numbering = color[0]
 
 			const name = color[1].name
-			const replacedName = name.replace(/-/g, ' ')
+			const split = name.split('-')
+			const capitalizedName = split
+				.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+				.join(' ')
+
 			const hex = color[1].hex
 			return (
 				<ColorCard
-					name={replacedName}
+					name={capitalizedName}
 					numbering={numbering}
 					hex={hex}
 					type={type}
@@ -61,8 +65,10 @@ function ColorList(props: ColorListProps) {
 	return (
 		<Box mt={4}>
 			<SimpleGrid
+				display={type === 'text' ? 'flex' : 'grid'}
+				flexWrap={type === 'text' ? 'wrap' : 'initial'}
 				columns={type === 'card' ? 5 : 6}
-				spacingY={8}
+				spacingY={type === 'text' ? 0 : 8}
 				justifyContent={'center'}
 				placeItems={'center'}
 			>
