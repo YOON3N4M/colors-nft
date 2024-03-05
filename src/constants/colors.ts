@@ -1,3 +1,5 @@
+import colors from '@/data/pantone-numbers.json'
+
 export const lightness = ['11', '12', '13', '14', '15', '16', '17', '18', '19']
 export const hue = [
 	'01',
@@ -132,3 +134,5 @@ export const chroma = [
 	'64',
 	'65',
 ]
+
+export const colorsArr = Object.entries(colors).map((color) => color)

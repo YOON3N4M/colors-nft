@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from '@chakra-ui/react'
-import colors from '@/data/pantone-numbers.json'
 import ColorCard, { ColorCardType } from '@/components/ColorCard'
+import { colorsArr } from '@/constants/colors'
 
 interface ColorListProps {
 	type: ColorCardType
@@ -10,8 +10,6 @@ interface ColorListProps {
 
 function ColorList(props: ColorListProps) {
 	const { type, filterHue, filterLightness } = props
-
-	const colorsArr = Object.entries(colors).map((color) => color)
 
 	function RenderFilteredList() {
 		let result = colorsArr
