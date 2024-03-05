@@ -1,7 +1,7 @@
 import { Box, Center, Text } from '@chakra-ui/react'
 import React from 'react'
 
-type ColorCardType = 'pantone' | 'square'
+export type ColorCardType = 'card' | 'square'
 
 interface ColorCardProps {
 	numbering: string
@@ -11,14 +11,14 @@ interface ColorCardProps {
 }
 
 export default function ColorCard(props: ColorCardProps) {
-	const { numbering, name, hex, type = 'pantone' } = props
+	const { numbering, name, hex, type = 'card' } = props
 
 	const height = type === 'square' ? '150px' : '160px'
 
 	function nameConvert(str: string) {}
 
 	return (
-		<Box maxW={'180px'}>
+		<Box w="180px" maxW={'180px'}>
 			<Center h={height} bg={`#${hex}`}></Center>
 			<Box
 				py={4}
