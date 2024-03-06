@@ -1,87 +1,87 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
-import { text, curve, translate } from './anim'
-import { Box } from '@chakra-ui/react'
-import { colorsArr } from '@/constants/colors'
+import { text, curve, translate } from "./anim";
+import { Box } from "@chakra-ui/react";
+import { colorsArr } from "@/constants/colors";
 
 const routes = {
-	'/': 'Home',
+  "/": "Home",
 
-	'/shop': 'Shop',
+  "/shop": "Shop",
 
-	'/about': 'About',
-}
+  "/about": "About",
+};
 
 const anim = (variants) => {
-	return {
-		variants,
+  return {
+    variants,
 
-		initial: 'initial',
+    initial: "initial",
 
-		animate: 'enter',
+    animate: "enter",
 
-		exit: 'exit',
-	}
-}
+    exit: "exit",
+  };
+};
 
 const bgColor = `#${
-	colorsArr[Math.floor(Math.random() * colorsArr.length)][1].hex
-}`
+  colorsArr[Math.floor(Math.random() * colorsArr.length)][1].hex
+}`;
 
 export default function Curve({ children, backgroundColor }) {
-	const router = useRouter()
+  const router = useRouter();
 
-	const [dimensions, setDimensions] = useState({
-		width: null,
+  const [dimensions, setDimensions] = useState({
+    width: null,
 
-		height: null,
-	})
+    height: null,
+  });
 
-	useEffect(() => {
-		function resize() {
-			setDimensions({
-				width: window.innerWidth,
+  useEffect(() => {
+    function resize() {
+      setDimensions({
+        width: window.innerWidth,
 
-				height: window.innerHeight,
-			})
-		}
+        height: window.innerHeight,
+      });
+    }
 
-		resize()
+    resize();
 
-		window.addEventListener('resize', resize)
+    window.addEventListener("resize", resize);
 
-		return () => {
-			window.removeEventListener('resize', resize)
-		}
-	}, [])
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
-	return (
-		<div className="page curve" style={{ backgroundColor: 'white' }}>
-			<Box
-				as={motion.div}
-				bgColor={bgColor}
-				style={{ opacity: dimensions.width == null ? 1 : 0 }}
-				className="background"
-				zIndex={100}
-			/>
+  return (
+    <div className="page curve" style={{ backgroundColor: "white" }}>
+      <Box
+        as={motion.div}
+        bgColor={bgColor}
+        style={{ opacity: dimensions.width == null ? 1 : 0 }}
+        className="background"
+        zIndex={100}
+      />
 
-			<motion.p className="route" {...anim(text)}>
-				{/* {routes[router.route]} */}
-			</motion.p>
+      <motion.p className="route" {...anim(text)}>
+        {/* {routes[router.route]} */}
+      </motion.p>
 
-			{dimensions.width != null && <SVG {...dimensions} />}
+      {dimensions.width != null && <SVG {...dimensions} />}
 
-			{children}
-		</div>
-	)
+      {children}
+    </div>
+  );
 }
 
 const SVG = ({ height, width }) => {
-	const initialPath = `
+  const initialPath = `
 
         M0 300 
 
@@ -93,9 +93,9 @@ const SVG = ({ height, width }) => {
 
         L0 0
 
-    `
+    `;
 
-	const targetPath = `
+  const targetPath = `
 
         M0 300
 
@@ -107,11 +107,11 @@ const SVG = ({ height, width }) => {
 
         L0 0
 
-    `
+    `;
 
-	return (
-		<motion.svg {...anim(translate)} fill={bgColor}>
-			<motion.path {...anim(curve(initialPath, targetPath))} />
-		</motion.svg>
-	)
-}
+  return (
+    <motion.svg className={"curve"} {...anim(translate)} fill={bgColor}>
+      <motion.path {...anim(curve(initialPath, targetPath))} />
+    </motion.svg>
+  );
+};
