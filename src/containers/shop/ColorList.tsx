@@ -17,7 +17,7 @@ const listVariants: Variants = {
   show: {
     opacity: 1,
     transition: {
-      delayChildren: 0.5,
+      //delayChildren: 0.5,
       staggerChildren: 0.1,
     },
   },
@@ -86,7 +86,7 @@ function ColorList(props: ColorListProps) {
     <Box mt={4}>
       <SimpleGrid
         as={motion.div}
-        layout
+        // layout
         display={type === "text" ? "flex" : "grid"}
         flexWrap={type === "text" ? "wrap" : "initial"}
         columns={type === "card" ? 5 : 6}
