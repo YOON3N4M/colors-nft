@@ -1,15 +1,15 @@
-import ContainerHome from '@/containers/ContainerHome'
-import { Inter } from 'next/font/google'
-import Curve from './../components/layout/pageTransition/index'
+import ContainerHome from "@/containers/ContainerHome";
+import { Inter } from "next/font/google";
+import Curve from "./../components/layout/pageTransition/index";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-	return (
-		<>
-			<Curve backgroundColor={'white'}>
-				<ContainerHome />
-			</Curve>
-		</>
-	)
+  return (
+    <>
+      <Curve>
+        <ContainerHome />
+      </Curve>
+    </>
+  );
 }
