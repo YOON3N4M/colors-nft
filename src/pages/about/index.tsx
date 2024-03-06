@@ -1,11 +1,11 @@
 import Curve from "@/components/layout/pageTransition";
-import ContainerShop from "@/containers/shop/ContainerShop";
+import ContainerAbout from "@/containers/about/ContainerAbout";
 import React from "react";
 
-export default function Shop() {
+export default function About() {
   return (
     <Curve>
-      <ContainerShop />
+      <ContainerAbout />
     </Curve>
   );
 }

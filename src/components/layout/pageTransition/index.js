@@ -32,7 +32,7 @@ const bgColor = `#${
   colorsArr[Math.floor(Math.random() * colorsArr.length)][1].hex
 }`;
 
-export default function Curve({ children, backgroundColor }) {
+export default function Curve({ children }) {
   const router = useRouter();
 
   const [dimensions, setDimensions] = useState({
