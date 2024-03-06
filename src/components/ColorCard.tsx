@@ -40,6 +40,7 @@ export default function ColorCard(props: ColorCardProps) {
           initial="offscreen"
           whileInView="onscreen"
           variants={scrollFadeInVariants}
+          cursor={"pointer"}
         >
           <Center h={height} bg={`#${hex}`}></Center>
           {type === "card" && (

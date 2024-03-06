@@ -10,20 +10,15 @@ import { colorsArr } from "@/constants/colors";
 
 const routes = {
   "/": "Home",
-
   "/shop": "Shop",
-
   "/about": "About",
 };
 
 const anim = (variants) => {
   return {
     variants,
-
     initial: "initial",
-
     animate: "enter",
-
     exit: "exit",
   };
 };
