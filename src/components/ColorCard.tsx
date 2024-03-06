@@ -17,14 +17,11 @@ export default function ColorCard(props: ColorCardProps) {
   const height = type === "square" ? "180px" : "160px";
 
   const scrollFadeInVariants: Variants = {
-    offscreen: {
+    hidden: {
       opacity: 0,
     },
-    onscreen: {
+    show: {
       opacity: 1,
-      transition: {
-        duration: 0.8,
-      },
     },
   };
 
@@ -37,10 +34,9 @@ export default function ColorCard(props: ColorCardProps) {
           as={motion.div}
           w="180px"
           maxW={"180px"}
-          initial="offscreen"
-          whileInView="onscreen"
           variants={scrollFadeInVariants}
           cursor={"pointer"}
+          key={numbering}
         >
           <Center h={height} bg={`#${hex}`}></Center>
           {type === "card" && (
@@ -66,8 +62,6 @@ export default function ColorCard(props: ColorCardProps) {
       ) : (
         <Box
           as={motion.button}
-          initial="offscreen"
-          whileInView="onscreen"
           variants={scrollFadeInVariants}
           display={"inline"}
           fontSize={80}
