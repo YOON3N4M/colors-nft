@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 
 import { useRouter } from "next/router";
 
@@ -74,8 +74,13 @@ export default function Curve({ children, backgroundColor }) {
       </motion.p>
 
       {dimensions.width != null && <SVG {...dimensions} />}
-
-      {children}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.2 }}
+      >
+        {children}
+      </motion.div>
     </div>
   );
 }
