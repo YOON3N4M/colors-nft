@@ -28,9 +28,11 @@ const filterTitleVar: Variants = {
 const itemsVar: Variants = {
   hidden: {
     opacity: 0,
+    x: -15,
   },
   show: {
     opacity: 1,
+    x: 0,
   },
 };
 
