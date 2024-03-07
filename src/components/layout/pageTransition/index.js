@@ -8,7 +8,7 @@ import { text, curve, translate } from "./anim";
 import { Box } from "@chakra-ui/react";
 import { colorsArr } from "@/constants/colors";
 
-const bgColor = "#58C9D4";
+export const keyColor = "#e4eadf";
 
 const routes = {
   "/": "Home",
@@ -56,7 +56,7 @@ export default function Curve({ children }) {
     <div className="page curve" style={{ backgroundColor: "white" }}>
       <Box
         as={motion.div}
-        bgColor={bgColor}
+        bgColor={keyColor}
         style={{ opacity: dimensions.width == null ? 1 : 0 }}
         className="background"
         zIndex={100}
@@ -108,7 +108,7 @@ const SVG = ({ height, width }) => {
     `;
 
   return (
-    <motion.svg className={"curve"} {...anim(translate)} fill={bgColor}>
+    <motion.svg className={"curve"} {...anim(translate)} fill={keyColor}>
       <motion.path {...anim(curve(initialPath, targetPath))} />
     </motion.svg>
   );
