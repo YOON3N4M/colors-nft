@@ -3,12 +3,14 @@ import React, { useState } from "react";
 
 interface RollingBannerProps {
   children: React.ReactNode[];
+  direction?: "to left" | "to right";
+  bg?: string;
 }
 
 export default function RollingBanner(props: RollingBannerProps) {
-  const { children } = props;
+  const { children, direction = "to left", bg = "white" } = props;
 
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(true);
 
   function stopAnimate() {
     setAnimate(false);
@@ -19,11 +21,13 @@ export default function RollingBanner(props: RollingBannerProps) {
 
   function handleAnimation(type: "original" | "clone") {
     const duration = children.length * 3;
+    const keyframeName =
+      direction === "to left" ? "rollingBanner" : "rollingBannerReverse";
 
     if (type === "original") {
-      return `${duration}s linear infinite none running infiniteAnimation1`;
+      return `${duration}s linear infinite none running ${keyframeName}1`;
     } else {
-      return `${duration}s linear infinite infiniteAnimation2`;
+      return `${duration}s linear infinite ${keyframeName}2`;
     }
   }
   console.log(children.length);
@@ -33,10 +37,12 @@ export default function RollingBanner(props: RollingBannerProps) {
       onMouseEnter={stopAnimate}
       onMouseLeave={runAnimate}
     >
-      <Box className="slide-container">
+      <Box className="slide-container" bg={bg}>
         <Box className="slide-wrapper">
           <Box
-            className={"slide original".concat(animate ? "" : " stop")}
+            className={"slide"
+              .concat(direction === "to left" ? " original" : " clone")
+              .concat(animate ? "" : " stop")}
             animation={handleAnimation("original")}
           >
             {children.map((child) => (
@@ -44,7 +50,9 @@ export default function RollingBanner(props: RollingBannerProps) {
             ))}
           </Box>
           <Box
-            className={"slide clone".concat(animate ? "" : " stop")}
+            className={"slide"
+              .concat(direction === "to left" ? " clone" : " original")
+              .concat(animate ? "" : " stop")}
             animation={handleAnimation("clone")}
           >
             {children.map((child) => (

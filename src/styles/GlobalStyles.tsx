@@ -82,11 +82,12 @@ const style = css`
   .rolling-banner-wrapper {
     .slide-container {
       overflow: hidden;
-
+      // background-color: black;
       .slide-wrapper {
         display: flex;
         flex-wrap: nowrap;
       }
+
       .slide {
         display: flex;
         align-items: center;
@@ -94,7 +95,7 @@ const style = css`
         position: relative;
         //border-top: 1px solid #bbb;
         //border-bottom: 1px solid #bbb;
-        padding: 40px 0;
+        padding: 5px 0;
 
         &.stop {
           animation-play-state: paused;
@@ -111,7 +112,7 @@ const style = css`
     }
   }
 
-  @keyframes infiniteAnimation1 {
+  @keyframes rollingBanner1 {
     0% {
       transform: translateX(0%);
     }
@@ -125,12 +126,34 @@ const style = css`
       transform: translateX(0%);
     }
   }
-  @keyframes infiniteAnimation2 {
+  @keyframes rollingBanner2 {
     0% {
       transform: translateX(0%);
     }
     100% {
       transform: translateX(-200%);
+    }
+  }
+  @keyframes rollingBannerReverse1 {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    50.1% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes rollingBannerReverse2 {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
     }
   }
 `;

@@ -75,13 +75,6 @@ function ColorList(props: ColorListProps) {
         initial="hidden"
         animate={contorols}
       >
-        {/* {colorsArr.map((color) => (
-					<ColorCard
-						name={color[1].name}
-						numbering={color[0]}
-						hex={color[1].hex}
-					/>
-				))} */}
         <RenderFilteredList />
       </SimpleGrid>
     </Box>

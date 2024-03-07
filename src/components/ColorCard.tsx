@@ -1,6 +1,6 @@
 import { Box, Center, Text } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export type ColorCardType = "card" | "square" | "text";
 
@@ -36,8 +36,6 @@ export default function ColorCard(props: ColorCardProps) {
       y: 0,
     },
   };
-
-  function nameConvert(str: string) {}
 
   return (
     <>
