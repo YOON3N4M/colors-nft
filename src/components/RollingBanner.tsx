@@ -17,6 +17,16 @@ export default function RollingBanner(props: RollingBannerProps) {
     setAnimate(true);
   }
 
+  function handleAnimation(type: "original" | "clone") {
+    const duration = children.length * 3;
+
+    if (type === "original") {
+      return `${duration}s linear infinite none running infiniteAnimation1`;
+    } else {
+      return `${duration}s linear infinite infiniteAnimation2`;
+    }
+  }
+  console.log(children.length);
   return (
     <Box
       className="rolling-banner-wrapper"
@@ -25,12 +35,18 @@ export default function RollingBanner(props: RollingBannerProps) {
     >
       <Box className="slide-container">
         <Box className="slide-wrapper">
-          <Box className={"slide original".concat(animate ? "" : " stop")}>
+          <Box
+            className={"slide original".concat(animate ? "" : " stop")}
+            animation={handleAnimation("original")}
+          >
             {children.map((child) => (
               <Box className="item">{child}</Box>
             ))}
           </Box>
-          <Box className={"slide clone".concat(animate ? "" : " stop")}>
+          <Box
+            className={"slide clone".concat(animate ? "" : " stop")}
+            animation={handleAnimation("clone")}
+          >
             {children.map((child) => (
               <Box className="item">{child}</Box>
             ))}

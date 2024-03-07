@@ -85,7 +85,7 @@ export default function ColorCard(props: ColorCardProps) {
           transition={"color"}
           transitionDuration={"200ms"}
           width={"max-content"}
-        >{`${name}${comma && ","}`}</Box>
+        >{`${name}${comma ? "," : ""}`}</Box>
       )}
     </>
   );

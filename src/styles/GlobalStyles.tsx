@@ -96,12 +96,6 @@ const style = css`
         border-bottom: 1px solid #bbb;
         padding: 40px 0;
 
-        &.original {
-          animation: 100s linear infinite normal none running infiniteAnimation1;
-        }
-        &.clone {
-          animation: 100s linear infinite infiniteAnimation2;
-        }
         &.stop {
           animation-play-state: paused;
         }
