@@ -77,7 +77,6 @@ export default function ColorCard(props: ColorCardProps) {
           variants={scrollFadeInVariants}
           display={"inline"}
           fontSize={80}
-          opacity={0.25}
           fontWeight={500}
           _hover={{ color: `#${hex}` }}
           cursor={"pointer"}

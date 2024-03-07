@@ -39,6 +39,6 @@ export function filterColor(
       return color.lightness === level;
     }
   });
-
+  console.log(filteredColor);
   return filteredColor;
 }

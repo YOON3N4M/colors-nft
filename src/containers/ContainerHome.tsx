@@ -9,7 +9,7 @@ export default function ContainerHome() {
   return (
     <Box>
       <RollingBanner>
-        {filterColor(arrangedColorArray, "lightness", "19").map((color) => (
+        {filterColor(arrangedColorArray, "lightness", "18").map((color) => (
           <ColorCard
             type="text"
             numbering={color.numbering}

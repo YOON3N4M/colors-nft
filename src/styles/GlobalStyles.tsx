@@ -92,8 +92,8 @@ const style = css`
         align-items: center;
         flex-wrap: nowrap;
         position: relative;
-        border-top: 1px solid #bbb;
-        border-bottom: 1px solid #bbb;
+        //border-top: 1px solid #bbb;
+        //border-bottom: 1px solid #bbb;
         padding: 40px 0;
 
         &.stop {
@@ -101,7 +101,7 @@ const style = css`
         }
 
         .item {
-          margin: 0 0px;
+          margin: 0 15px;
           cursor: pointer;
           z-index: 2;
           transition: 0.3s;
