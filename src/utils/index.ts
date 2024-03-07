@@ -42,3 +42,11 @@ export function filterColor(
   console.log(filteredColor);
   return filteredColor;
 }
+
+export function suffleIndex(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // 0부터 i까지의 랜덤한 인덱스 선택
+    [array[i], array[j]] = [array[j], array[i]]; // 요소 교환
+  }
+  return array;
+}
