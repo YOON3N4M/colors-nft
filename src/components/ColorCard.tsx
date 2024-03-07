@@ -9,10 +9,20 @@ interface ColorCardProps {
   name: string;
   hex: string;
   type: ColorCardType;
+  //text type
+  colorText?: boolean;
+  comma?: boolean;
 }
 
 export default function ColorCard(props: ColorCardProps) {
-  const { numbering, name, hex, type = "card" } = props;
+  const {
+    numbering,
+    name,
+    hex,
+    type = "card",
+    comma = true,
+    colorText = false,
+  } = props;
 
   const height = type === "square" ? "180px" : "160px";
 
@@ -71,10 +81,11 @@ export default function ColorCard(props: ColorCardProps) {
           fontWeight={500}
           _hover={{ color: `#${hex}` }}
           cursor={"pointer"}
-          color={`#80808073`}
+          color={colorText ? `#${hex}` : `#80808073`}
           transition={"color"}
           transitionDuration={"200ms"}
-        >{`${name},`}</Box>
+          width={"max-content"}
+        >{`${name}${comma && ","}`}</Box>
       )}
     </>
   );

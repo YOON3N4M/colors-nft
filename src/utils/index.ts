@@ -1,10 +1,17 @@
 // data/json에 있는 컬러 어레인지 함수
-type ColorWithName = {
+type Color = {
   name: string;
   hex: string;
 };
 
-type ColorWithNumbering = [string, ColorWithName];
+type ColorWithNumbering = [string, Color];
+
+interface ArrangedColor extends Color {
+  numbering: string;
+  displayName: string;
+  hue: string;
+  lightness: string;
+}
 
 export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
   const arranged = colorArr.map((color) => {
@@ -18,7 +25,14 @@ export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
       .join(" ");
     const hex = color[1].hex;
 
-    return { numbering, hue, lightness, name, displayName, hex };
+    return {
+      numbering,
+      hue,
+      lightness,
+      name,
+      displayName,
+      hex,
+    } as ArrangedColor;
   });
   return arranged;
 }
