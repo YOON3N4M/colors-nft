@@ -8,6 +8,8 @@ import { text, curve, translate } from "./anim";
 import { Box } from "@chakra-ui/react";
 import { colorsArr } from "@/constants/colors";
 
+const bgColor = "#58C9D4";
+
 const routes = {
   "/": "Home",
   "/shop": "Shop",
@@ -22,10 +24,6 @@ const anim = (variants) => {
     exit: "exit",
   };
 };
-
-const bgColor = `#${
-  colorsArr[Math.floor(Math.random() * colorsArr.length)][1].hex
-}`;
 
 export default function Curve({ children }) {
   const router = useRouter();
