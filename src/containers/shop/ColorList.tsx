@@ -1,8 +1,9 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import ColorCard, { ColorCardType } from "@/components/ColorCard";
-import { arrangedColorArray, colorsArr } from "@/constants/colors";
+import { arrangedColorArray } from "@/constants/colors";
 import { motion, useAnimationControls, Variants } from "framer-motion";
 import { useEffect } from "react";
+import { filterColor } from "@/utils";
 
 interface ColorListProps {
   type: ColorCardType;
@@ -36,23 +37,11 @@ function ColorList(props: ColorListProps) {
     let result = arrangedColorArray;
 
     if (filterHue) {
-      result = result.filter((color) => {
-        let filterResult = false;
-        if (filterHue) {
-          filterResult = color.hue === filterHue;
-        }
-        return filterResult;
-      });
+      result = filterColor(result, "hue", filterHue);
     }
 
     if (filterLightness) {
-      result = result.filter((color) => {
-        let filterResult = false;
-        if (filterLightness) {
-          filterResult = color.lightness === filterLightness;
-        }
-        return filterResult;
-      });
+      result = filterColor(result, "lightness", filterLightness);
     }
 
     const cards = result.map((color) => {

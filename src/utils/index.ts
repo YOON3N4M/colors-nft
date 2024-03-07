@@ -1,18 +1,6 @@
+import { ArrangedColor, ColorWithNumbering, Filter } from "@/types/color";
+
 // data/json에 있는 컬러 어레인지 함수
-type Color = {
-  name: string;
-  hex: string;
-};
-
-type ColorWithNumbering = [string, Color];
-
-interface ArrangedColor extends Color {
-  numbering: string;
-  displayName: string;
-  hue: string;
-  lightness: string;
-}
-
 export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
   const arranged = colorArr.map((color) => {
     const numbering = color[0];
@@ -35,4 +23,22 @@ export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
     } as ArrangedColor;
   });
   return arranged;
+}
+
+export function filterColor(
+  arrangedColorArray: ArrangedColor[],
+  filter: Filter,
+  level: string
+) {
+  const filteredColor = arrangedColorArray.filter((color) => {
+    if (filter === "hue") {
+      return color.hue === level;
+    }
+
+    if (filter === "lightness") {
+      return color.lightness === level;
+    }
+  });
+
+  return filteredColor;
 }
