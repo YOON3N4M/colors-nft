@@ -12,6 +12,7 @@ interface ColorCardProps {
   //text type
   colorText?: boolean;
   comma?: boolean;
+  isLastIdx?: boolean;
 }
 
 export default function ColorCard(props: ColorCardProps) {
@@ -22,6 +23,7 @@ export default function ColorCard(props: ColorCardProps) {
     type = "card",
     comma = true,
     colorText = false,
+    isLastIdx = false,
   } = props;
 
   const height = type === "square" ? "180px" : "160px";
@@ -82,7 +84,7 @@ export default function ColorCard(props: ColorCardProps) {
           transition={"color"}
           transitionDuration={"200ms"}
           width={"max-content"}
-        >{`${name}${comma ? "," : ""}`}</Box>
+        >{`${name}${!isLastIdx && comma ? "," : ""}`}</Box>
       )}
     </>
   );

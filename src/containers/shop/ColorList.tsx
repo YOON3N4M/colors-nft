@@ -44,7 +44,7 @@ function ColorList(props: ColorListProps) {
       result = filterColor(result, "lightness", filterLightness);
     }
 
-    const cards = result.map((color) => {
+    const cards = result.map((color, idx) => {
       const { displayName, numbering, hex } = color;
       return (
         <ColorCard
@@ -53,6 +53,7 @@ function ColorList(props: ColorListProps) {
           hex={hex}
           type={type}
           key={numbering}
+          isLastIdx={idx === result.length - 1}
         />
       );
     });
