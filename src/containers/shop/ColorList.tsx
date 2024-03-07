@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import ColorCard, { ColorCardType } from "@/components/ColorCard";
-import { colorsArr } from "@/constants/colors";
+import { arrangedColorArray, colorsArr } from "@/constants/colors";
 import { motion, useAnimationControls, Variants } from "framer-motion";
 import { useEffect } from "react";
 
@@ -33,46 +33,33 @@ function ColorList(props: ColorListProps) {
   }, [type, filterHue, filterLightness]);
 
   function RenderFilteredList() {
-    let result = colorsArr;
+    let result = arrangedColorArray;
 
     if (filterHue) {
       result = result.filter((color) => {
-        const numbering = color[0];
-        const hue = numbering.substring(3, 5);
-        let result = false;
+        let filterResult = false;
         if (filterHue) {
-          result = hue === filterHue;
+          filterResult = color.hue === filterHue;
         }
-        return result;
+        return filterResult;
       });
     }
 
     if (filterLightness) {
       result = result.filter((color) => {
-        const numbering = color[0];
-        const lightness = numbering.substring(0, 2);
-
-        let result = false;
+        let filterResult = false;
         if (filterLightness) {
-          result = lightness === filterLightness;
+          filterResult = color.lightness === filterLightness;
         }
-        return result;
+        return filterResult;
       });
     }
 
     const cards = result.map((color) => {
-      const numbering = color[0];
-
-      const name = color[1].name;
-      const split = name.split("-");
-      const capitalizedName = split
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-
-      const hex = color[1].hex;
+      const { displayName, numbering, hex } = color;
       return (
         <ColorCard
-          name={capitalizedName}
+          name={displayName}
           numbering={numbering}
           hex={hex}
           type={type}
