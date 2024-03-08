@@ -22,6 +22,9 @@ export default function Header() {
           <Center>
             <Link href={"/about"}>About</Link>
           </Center>
+          <Center>
+            <Link href={"/playground"}>Playground</Link>
+          </Center>
         </Flex>
       </Flex>
     </Box>
