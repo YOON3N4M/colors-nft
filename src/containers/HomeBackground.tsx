@@ -40,8 +40,9 @@ export default function HomeBackground() {
       </RollingBanner>
       <RollingBanner bg={bgColor}>
         {suffleIndex(filterColor(arrangedColorArray, "lightness", "15")).map(
-          (color) => (
+          (color, idx) => (
             <ColorCard
+              key={`${color.lightness}-${idx}`}
               type="text"
               numbering={color.numbering}
               hex={color.hex}
@@ -114,8 +115,9 @@ export default function HomeBackground() {
       </RollingBanner>
       <RollingBanner direction="to right" bg={bgColor}>
         {suffleIndex(filterColor(arrangedColorArray, "lightness", "11")).map(
-          (color) => (
+          (color, idx) => (
             <ColorCard
+              key={`${color.lightness}-${idx}`}
               type="text"
               numbering={color.numbering}
               hex={color.hex}
