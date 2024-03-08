@@ -60,19 +60,18 @@ export default function ContainerHome() {
               zIndex={100}
               _hover={{ bg: "#fefefe22" }}
             ></Box>
+            <Box
+              className="bg-box"
+              as={motion.div}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { delay: bannerDelay, duration: bannerDuration },
+              }}
+            >
+              <HomeBackground />
+            </Box>
           </>
-        )}
-        {render && (
-          <Box
-            as={motion.div}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: 1,
-              transition: { delay: bannerDelay, duration: bannerDuration },
-            }}
-          >
-            <HomeBackground />
-          </Box>
         )}
       </Box>
     </Box>
