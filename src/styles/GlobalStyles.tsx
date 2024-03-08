@@ -38,7 +38,7 @@ const style = css`
   }
   // 커브
   .curve {
-    svg,
+    .curve-svg,
     .background {
       position: fixed;
       height: calc(100vh + 600px);
@@ -94,6 +94,14 @@ const style = css`
         }
       }
     }
+  }
+
+  circle,
+  rect,
+  line {
+    stroke-width: 10px;
+    stroke-linecap: round;
+    fill: transparent;
   }
 
   @keyframes rollingBanner1 {

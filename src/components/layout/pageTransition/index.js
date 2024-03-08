@@ -108,7 +108,11 @@ const SVG = ({ height, width }) => {
     `;
 
   return (
-    <motion.svg className={"curve"} {...anim(translate)} fill={keyColor}>
+    <motion.svg
+      className={"curve curve-svg"}
+      {...anim(translate)}
+      fill={keyColor}
+    >
       <motion.path {...anim(curve(initialPath, targetPath))} />
     </motion.svg>
   );
