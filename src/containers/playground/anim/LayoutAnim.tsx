@@ -34,6 +34,7 @@ export default function LayoutAnim() {
         <Box className="nav" display="flex">
           {tabs.map((item, idx) => (
             <Center
+              key={`${item}`}
               as={"button"}
               position="relative"
               onClick={() => {

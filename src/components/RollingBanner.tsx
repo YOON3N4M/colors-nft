@@ -45,8 +45,10 @@ export default function RollingBanner(props: RollingBannerProps) {
               .concat(animate ? "" : " stop")}
             animation={handleAnimation("original")}
           >
-            {children.map((child) => (
-              <Box className="item">{child}</Box>
+            {children.map((child, idx) => (
+              <Box key={`wrap-${idx}`} className="item">
+                {child}
+              </Box>
             ))}
           </Box>
           <Box
@@ -55,8 +57,10 @@ export default function RollingBanner(props: RollingBannerProps) {
               .concat(animate ? "" : " stop")}
             animation={handleAnimation("clone")}
           >
-            {children.map((child) => (
-              <Box className="item">{child}</Box>
+            {children.map((child, idx) => (
+              <Box key={`wrap-${idx}`} className="item">
+                {child}
+              </Box>
             ))}
           </Box>
         </Box>
