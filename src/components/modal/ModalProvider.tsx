@@ -33,6 +33,7 @@ export default function ModalProvider() {
         handleModalOff();
       }}
       scrollBehavior="inside"
+      motionPreset="slideInBottom"
       isCentered
     >
       <ModalOverlay />
