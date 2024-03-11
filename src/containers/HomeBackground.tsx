@@ -14,9 +14,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -29,9 +27,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -44,9 +40,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -59,9 +53,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -74,9 +66,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -89,9 +79,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -104,9 +92,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />
@@ -117,11 +103,9 @@ export default function HomeBackground() {
         {suffleIndex(filterColor(arrangedColorArray, "lightness", "11")).map(
           (color, idx) => (
             <ColorCard
+              color={color}
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
               comma={false}
               colorText={true}
             />
@@ -134,9 +118,7 @@ export default function HomeBackground() {
             <ColorCard
               key={`${color.lightness}-${idx}`}
               type="text"
-              numbering={color.numbering}
-              hex={color.hex}
-              name={color.displayName}
+              color={color}
               comma={false}
               colorText={true}
             />

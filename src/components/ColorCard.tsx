@@ -1,3 +1,5 @@
+import { useModalActions } from "@/store/modalStore";
+import { ArrangedColor } from "@/types/color";
 import { Box, Center, Text } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
@@ -5,9 +7,7 @@ import React, { useEffect, useState } from "react";
 export type ColorCardType = "card" | "square" | "text";
 
 interface ColorCardProps {
-  numbering: string;
-  name: string;
-  hex: string;
+  color: ArrangedColor;
   type: ColorCardType;
   //text type
   colorText?: boolean;
@@ -15,29 +15,40 @@ interface ColorCardProps {
   isLastIdx?: boolean;
 }
 
+const scrollFadeInVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 export default function ColorCard(props: ColorCardProps) {
   const {
-    numbering,
-    name,
-    hex,
+    color,
     type = "card",
     comma = true,
     colorText = false,
     isLastIdx = false,
   } = props;
 
+  const { numbering, name, displayName, hex } = color;
+
   const height = type === "square" ? "180px" : "160px";
 
-  const scrollFadeInVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-    },
-  };
+  const { setModalType, setSelectedColor } = useModalActions();
+
+  function handleColorCardClick() {
+    openColorDetailModal();
+  }
+
+  function openColorDetailModal() {
+    setSelectedColor(color);
+    setModalType("color-detail");
+  }
 
   return (
     <>
@@ -49,6 +60,7 @@ export default function ColorCard(props: ColorCardProps) {
           variants={scrollFadeInVariants}
           cursor={"pointer"}
           key={numbering}
+          onClick={handleColorCardClick}
         >
           <Center h={height} bg={`#${hex}`}></Center>
           {type === "card" && (
@@ -66,7 +78,7 @@ export default function ColorCard(props: ColorCardProps) {
                 {numbering}
               </Text>
               <Text fontWeight={600} fontSize={"large"} lineHeight={0.8}>
-                {name}
+                {displayName}
               </Text>
             </Box>
           )}
@@ -84,7 +96,8 @@ export default function ColorCard(props: ColorCardProps) {
           transition={"color"}
           transitionDuration={"200ms"}
           width={"max-content"}
-        >{`${name}${!isLastIdx && comma ? "," : ""}`}</Box>
+          onClick={handleColorCardClick}
+        >{`${displayName}${!isLastIdx && comma ? "," : ""}`}</Box>
       )}
     </>
   );

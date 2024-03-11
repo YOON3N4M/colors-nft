@@ -45,12 +45,10 @@ function ColorList(props: ColorListProps) {
     }
 
     const cards = result.map((color, idx) => {
-      const { displayName, numbering, hex } = color;
+      const { displayName, numbering, hex, hue } = color;
       return (
         <ColorCard
-          name={displayName}
-          numbering={numbering}
-          hex={hex}
+          color={color}
           type={type}
           key={numbering}
           isLastIdx={idx === result.length - 1}

@@ -15,12 +15,15 @@ export default function Header() {
         <Center py={4} fontSize={20}>
           <Link href={"/"}>COLORS</Link>
         </Center>
-        <Flex gap={8}>
+        <Flex flex={1} gap={8}>
           <Center>
             <Link href={"/shop"}>Shop</Link>
           </Center>
           <Center>
             <Link href={"/about"}>About</Link>
+          </Center>
+          <Center ml="auto">
+            <Link href={"/my-page"}>my page</Link>
           </Center>
         </Flex>
       </Flex>
