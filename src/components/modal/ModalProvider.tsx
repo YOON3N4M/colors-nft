@@ -34,7 +34,6 @@ export default function ModalProvider() {
       }}
       scrollBehavior="inside"
       motionPreset="slideInBottom"
-      isCentered
     >
       <ModalOverlay />
       <ModalContentProvider modalType={modalType} />

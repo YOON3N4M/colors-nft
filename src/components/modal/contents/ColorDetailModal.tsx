@@ -14,7 +14,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function ModalColorDetail() {
+export default function ColorDetailModal() {
   const selectedColor = useSelectedColor();
   const { hue, displayName, hex, lightness, numbering } =
     selectedColor as ArrangedColor;

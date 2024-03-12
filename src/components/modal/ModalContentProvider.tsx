@@ -1,6 +1,8 @@
-import { ModalType } from "@/store/modalStore";
 import React from "react";
-import ModalColorDetail from "./contents/ColorDetail";
+import ColorDetailModal from "./contents/ColorDetailModal";
+import SignInModal from "./contents/SignInModal";
+
+export type ModalType = null | "color-detail" | "sign-in";
 
 interface ModalContentProviderProps {
   modalType: ModalType;
@@ -11,7 +13,9 @@ export default function ModalContentProvider(props: ModalContentProviderProps) {
 
   switch (modalType) {
     case "color-detail":
-      return <ModalColorDetail />;
+      return <ColorDetailModal />;
+    case "sign-in":
+      return <SignInModal />;
     default:
       return <></>;
   }

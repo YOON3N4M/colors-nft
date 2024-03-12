@@ -1,6 +1,7 @@
 import { Box, Center, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import AccountBtn from "../AccountBtn";
 
 export default function Header() {
   return (
@@ -23,7 +24,7 @@ export default function Header() {
             <Link href={"/about"}>About</Link>
           </Center>
           <Center ml="auto">
-            <Link href={"/my-page"}>my page</Link>
+            <AccountBtn />
           </Center>
         </Flex>
       </Flex>

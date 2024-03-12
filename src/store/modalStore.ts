@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { ArrangedColor } from "@/types/color";
-
-export type ModalType = null | "color-detail";
+import { ModalType } from "@/components/modal/ModalContentProvider";
 
 interface ModalStore {
   isModalOn: boolean;
