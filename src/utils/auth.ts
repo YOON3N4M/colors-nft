@@ -21,15 +21,16 @@ export async function googleLogin() {
 
 export async function registerUserDocument(user: User) {
   const { uid, displayName, metadata, photoURL } = user;
-  const { createAt } = metadata;
 
   const userDoc: UserDocument = {
     uid,
     displayName: displayName ?? "anonymous",
-    createdAt: createAt ?? "test",
+    createdAt: new Date().getTime(),
     photoURL: photoURL ?? null,
     lastEarn: null,
     ownColors: [],
+    autoEarnToken: 0,
+    clickEarnToken: 0,
   };
 
   const ref = doc(dbService, "user", uid);
