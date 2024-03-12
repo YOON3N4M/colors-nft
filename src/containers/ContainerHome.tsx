@@ -1,4 +1,5 @@
 import ColorCard from "@/components/ColorCard";
+import ColorCube from "@/components/ColorCube";
 import RollingBanner from "@/components/RollingBanner";
 import { arrangedColorArray, colorsArr } from "@/constants/colors";
 import { filterColor, suffleIndex } from "@/utils";
@@ -21,7 +22,7 @@ export default function ContainerHome() {
   }, []);
   return (
     <Box height={"100dvh"} overflowY="hidden">
-      <Box className="select-your-own-color" position={"relative"}>
+      {/* <Box className="select-your-own-color" position={"relative"}>
         {render && (
           <>
             <Center
@@ -68,12 +69,10 @@ export default function ContainerHome() {
                 opacity: 1,
                 transition: { delay: bannerDelay, duration: bannerDuration },
               }}
-            >
-              <HomeBackground />
-            </Box>
+            ></Box>
           </>
         )}
-      </Box>
+      </Box> */}
     </Box>
   );
 }

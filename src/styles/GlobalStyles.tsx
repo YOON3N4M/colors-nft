@@ -148,6 +148,12 @@ const style = css`
       transform: translateX(0%);
     }
   }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate3d(1, 1, 1, 360deg);
+    }
+  }
 `;
 
 export default function GlobalStyles() {
