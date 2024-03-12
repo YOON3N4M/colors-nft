@@ -1,7 +1,9 @@
 import { ColorCardType } from "@/components/ColorCard";
 import { hue, lightness } from "@/constants/colors";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
+import { HiAdjustmentsHorizontal } from "react-icons/hi2";
+import { GoPlus } from "react-icons/go";
 
 interface FilterColorProps {
   type: ColorCardType;
@@ -53,7 +55,54 @@ function FilterColor(props: FilterColorProps) {
 
   return (
     <Box>
-      <Box>
+      <Box py={6} borderBottom="1px solid black">
+        <Flex fontSize={"lg"} alignItems={"center"}>
+          <HiAdjustmentsHorizontal />
+          <Text fontWeight={600} ml={2}>
+            Filters
+          </Text>
+        </Flex>
+      </Box>
+      <Box py={6} borderBottom="1px solid black">
+        <Flex cursor={"pointer"}>
+          <Text>Style</Text>
+          <Center
+            fontSize={"xl"}
+            color={"gray"}
+            _hover={{ color: "black" }}
+            ml="auto"
+          >
+            <GoPlus />
+          </Center>
+        </Flex>
+      </Box>
+      <Box py={6} borderBottom="1px solid black">
+        <Flex cursor={"pointer"}>
+          <Text>Lightness</Text>
+          <Center
+            fontSize={"xl"}
+            color={"gray"}
+            _hover={{ color: "black" }}
+            ml="auto"
+          >
+            <GoPlus />
+          </Center>
+        </Flex>
+      </Box>
+      <Box py={6} borderBottom="1px solid black">
+        <Flex cursor={"pointer"}>
+          <Text>Hue</Text>
+          <Center
+            fontSize={"xl"}
+            color={"gray"}
+            _hover={{ color: "black" }}
+            ml="auto"
+          >
+            <GoPlus />
+          </Center>
+        </Flex>
+      </Box>
+      {/* <Box>
         <Flex>
           <Box>style</Box>
           <Flex
@@ -163,7 +212,7 @@ function FilterColor(props: FilterColorProps) {
             ))}
           </Flex>
         </Flex>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

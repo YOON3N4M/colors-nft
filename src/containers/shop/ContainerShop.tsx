@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import colors from "@/data/pantone-numbers.json";
 import Contents from "@/components/layout/Contents";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
 import ColorCard, { ColorCardType } from "@/components/ColorCard";
 import FilterColor from "./FilterColor";
 import ColorList from "./ColorList";
@@ -22,27 +22,27 @@ export default function ContainerShop() {
 
   return (
     <Contents>
-      <Box>
-        <FilterColor
-          type={type}
-          filterLightness={filterLightness}
-          filterHue={filterHue}
-          setType={setType}
-          setFilterLightness={setFilterLightness}
-          setFilterHue={setFilterHue}
-        />
-      </Box>
-
-      <Box textAlign={"end"} color={"gray"}></Box>
-      <Box maxH={"1000px"} overflowY={"auto"}>
-        {isListOn && (
-          <ColorList
+      <Flex w="100%" gap={12}>
+        <Box w={"20%"}>
+          <FilterColor
             type={type}
-            filterHue={filterHue}
             filterLightness={filterLightness}
+            filterHue={filterHue}
+            setType={setType}
+            setFilterLightness={setFilterLightness}
+            setFilterHue={setFilterHue}
           />
-        )}
-      </Box>
+        </Box>
+        <Box>
+          {isListOn && (
+            <ColorList
+              type={type}
+              filterHue={filterHue}
+              filterLightness={filterLightness}
+            />
+          )}
+        </Box>
+      </Flex>
     </Contents>
   );
 }
