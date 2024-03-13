@@ -1,9 +1,10 @@
 import { ColorCardType } from "@/components/ColorCard";
 import { hue, lightness } from "@/constants/colors";
-import { Box, Center, Flex, Text } from "@chakra-ui/react";
+import { Box, Center, filter, Flex, Text } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
+import Filters from "./Filters";
 
 interface FilterColorProps {
   type: ColorCardType;
@@ -21,20 +22,9 @@ const filterTitleVar: Variants = {
   show: {
     opacity: 1,
     transition: {
-      delayChildren: 1,
+      delayChildren: 0,
       staggerChildren: 0.05,
     },
-  },
-};
-
-const itemsVar: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -15,
-  },
-  show: {
-    opacity: 1,
-    x: 0,
   },
 };
 
@@ -53,9 +43,17 @@ function FilterColor(props: FilterColorProps) {
     transitionDuration: "200ms",
   };
 
+  function handleLightnessFilter(level: string) {
+    if (level === filterLightness) {
+      setFilterLightness(null);
+    } else {
+      setFilterLightness(level);
+    }
+  }
+
   return (
     <Box>
-      <Box py={6} borderBottom="1px solid black">
+      <Box py={6} borderBottom="1px solid" borderColor={"base.200"}>
         <Flex fontSize={"lg"} alignItems={"center"}>
           <HiAdjustmentsHorizontal />
           <Text fontWeight={600} ml={2}>
@@ -63,20 +61,94 @@ function FilterColor(props: FilterColorProps) {
           </Text>
         </Flex>
       </Box>
-      <Box py={6} borderBottom="1px solid black">
-        <Flex cursor={"pointer"}>
-          <Text>Style</Text>
-          <Center
-            fontSize={"xl"}
-            color={"gray"}
+
+      <Filters filterName={"Style"}>
+        <Flex
+          as={motion.div}
+          variants={filterTitleVar}
+          initial="hidden"
+          animate="show"
+          pt={4}
+          gap={2}
+        >
+          <Box
+            as={motion.button}
+            color={type === "card" ? "black" : "#808080b8"}
             _hover={{ color: "black" }}
-            ml="auto"
+            __css={colorTransition}
+            onClick={() => setType("card")}
           >
-            <GoPlus />
-          </Center>
+            card
+          </Box>
+          <Box
+            as={motion.button}
+            color={type === "square" ? "black" : "#808080b8"}
+            _hover={{ color: "black" }}
+            __css={colorTransition}
+            onClick={() => setType("square")}
+          >
+            square
+          </Box>
+          <Box
+            as={motion.button}
+            color={type === "text" ? "black" : "#808080b8"}
+            _hover={{ color: "black" }}
+            __css={colorTransition}
+            onClick={() => setType("text")}
+          >
+            text
+          </Box>
         </Flex>
-      </Box>
-      <Box py={6} borderBottom="1px solid black">
+      </Filters>
+
+      <Filters filterName={"Lightness"}>
+        <Flex
+          pt={4}
+          gap={2}
+          as={motion.div}
+          variants={filterTitleVar}
+          initial="hidden"
+          animate="show"
+        >
+          {lightness.map((level) => (
+            <Box
+              key={`lightness-${level}`}
+              as={motion.button}
+              color={filterLightness === level ? "black" : "#808080b8"}
+              _hover={{ color: "black" }}
+              __css={colorTransition}
+              onClick={() => handleLightnessFilter(level)}
+            >
+              {level}
+            </Box>
+          ))}
+        </Flex>
+      </Filters>
+      <Filters filterName={"Hue"}>
+        <Flex
+          pt={4}
+          gap={2}
+          as={motion.div}
+          variants={filterTitleVar}
+          initial="hidden"
+          animate="show"
+          flexWrap={"wrap"}
+        >
+          {hue.map((level) => (
+            <Box
+              key={`hue-${level}`}
+              as={motion.button}
+              color={filterHue === level ? "black" : "#808080b8"}
+              _hover={{ color: "black" }}
+              __css={colorTransition}
+              onClick={() => setFilterHue(level)}
+            >
+              {level}
+            </Box>
+          ))}
+        </Flex>
+      </Filters>
+      {/* <Box py={6} borderBottom="1px solid" borderColor={"base.200"}>
         <Flex cursor={"pointer"}>
           <Text>Lightness</Text>
           <Center
@@ -89,7 +161,7 @@ function FilterColor(props: FilterColorProps) {
           </Center>
         </Flex>
       </Box>
-      <Box py={6} borderBottom="1px solid black">
+      <Box py={6} borderBottom="1px solid" borderColor={"base.200"}>
         <Flex cursor={"pointer"}>
           <Text>Hue</Text>
           <Center
@@ -101,7 +173,7 @@ function FilterColor(props: FilterColorProps) {
             <GoPlus />
           </Center>
         </Flex>
-      </Box>
+      </Box> */}
       {/* <Box>
         <Flex>
           <Box>style</Box>
@@ -113,39 +185,7 @@ function FilterColor(props: FilterColorProps) {
             ml={1}
             gap={2}
           >
-            <Box
-              as={motion.button}
-              color={type === "card" ? "black" : "#808080b8"}
-              _hover={{ color: "black" }}
-              __css={colorTransition}
-              onClick={() => setType("card")}
-              fontStyle={"italic"}
-              variants={itemsVar}
-            >
-              card
-            </Box>
-            <Box
-              as={motion.button}
-              color={type === "square" ? "black" : "#808080b8"}
-              _hover={{ color: "black" }}
-              __css={colorTransition}
-              onClick={() => setType("square")}
-              fontStyle={"italic"}
-              variants={itemsVar}
-            >
-              square
-            </Box>
-            <Box
-              as={motion.button}
-              color={type === "text" ? "black" : "#808080b8"}
-              _hover={{ color: "black" }}
-              __css={colorTransition}
-              onClick={() => setType("text")}
-              fontStyle={"italic"}
-              variants={itemsVar}
-            >
-              text
-            </Box>
+           
           </Flex>
         </Flex>
         <Flex>

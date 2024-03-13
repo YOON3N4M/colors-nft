@@ -23,7 +23,7 @@ export default function ContainerShop() {
   return (
     <Contents>
       <Flex w="100%" gap={12}>
-        <Box w={"20%"}>
+        <Box minW={"20%"} w={"20%"} maxW="20%">
           <FilterColor
             type={type}
             filterLightness={filterLightness}
