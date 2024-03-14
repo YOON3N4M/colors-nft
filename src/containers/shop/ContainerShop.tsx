@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import colors from "@/data/pantone-numbers.json";
 import Contents from "@/components/layout/Contents";
-import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import ColorCard, { ColorCardType } from "@/components/ColorCard";
 import FilterColor from "./FilterColor";
 import ColorList from "./ColorList";
@@ -17,11 +17,13 @@ export default function ContainerShop() {
   useEffect(() => {
     setTimeout(() => {
       setIsListOn(true);
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
     <Contents>
+      <Heading fontWeight={500}>Colors</Heading>
+      <Divider my={4} />
       <Flex w="100%" gap={12}>
         <Box minW={"20%"} w={"20%"} maxW="20%">
           <FilterColor
@@ -33,7 +35,7 @@ export default function ContainerShop() {
             setFilterHue={setFilterHue}
           />
         </Box>
-        <Box>
+        <Box flex={1}>
           {isListOn && (
             <ColorList
               type={type}

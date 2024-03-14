@@ -64,7 +64,8 @@ function ColorList(props: ColorListProps) {
         // layout
         display={type === "text" ? "flex" : "grid"}
         flexWrap={type === "text" ? "wrap" : "initial"}
-        columns={type === "card" ? 3 : 6}
+        columns={type === "card" ? 4 : 4}
+        spacingX={type === "text" ? 0 : 6}
         spacingY={type === "text" ? 0 : 8}
         justifyContent={"center"}
         placeItems={type === "text" ? "start" : "center"}
