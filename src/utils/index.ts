@@ -62,3 +62,10 @@ export function isDark(lightness: string) {
     return true;
   }
 }
+
+export function calculateTimeDiffer(unixTime: number) {
+  const currentTime = new Date().getTime();
+  const timeDiffetSec = Math.abs((unixTime - currentTime) / 1000);
+
+  return timeDiffetSec;
+}

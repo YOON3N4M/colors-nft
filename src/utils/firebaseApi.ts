@@ -13,10 +13,24 @@ import {
 type EarnType = "auto" | "click";
 
 // * 유저 관련
-export async function updateUsersToken(count: number, puid: string) {
-  const ref = doc(dbService, "user", puid);
+export async function updateUsersToken(count: number, uid: string) {
+  const ref = doc(dbService, "user", uid);
   await updateDoc(ref, {
     tokens: increment(count),
+  });
+}
+
+export async function updateUsersLastAutoEarn(uid: string) {
+  const ref = doc(dbService, "user", uid);
+  await updateDoc(ref, {
+    lastAutoEarn: new Date().getTime(),
+  });
+}
+
+export async function updateUsersLastClickEarn(uid: string) {
+  const ref = doc(dbService, "user", uid);
+  await updateDoc(ref, {
+    lastClickEarn: new Date().getTime(),
   });
 }
 

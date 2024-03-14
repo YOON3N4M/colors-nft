@@ -5,8 +5,8 @@ export interface UserDocument {
   displayName: string;
   photoURL: string | null;
   //재화 관련
-  lastAutoEarn: string | null;
-  lastClickEarn: string | null;
+  lastAutoEarn: number | null;
+  lastClickEarn: number | null;
   createdAt: number;
   ownColors: ArrangedColor[];
   tokens: number;
