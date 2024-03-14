@@ -23,11 +23,17 @@ import { isDark } from "@/utils";
  * 두번째 요소가 뒷면에 배치된다.
  *
  */
-export default function FlipCard() {
+
+interface FlipCardProps {
+  color: ArrangedColor | null;
+}
+
+export default function FlipCard(props: FlipCardProps) {
+  const { color } = props;
   const [isFliped, setIsFliped] = useState(false);
-  const selectedColor = useSelectedColor();
+
   const { hex, displayName, numbering, lightness, hue, saturation } =
-    selectedColor as ArrangedColor;
+    color as ArrangedColor;
 
   const childrenStyle = {
     width: "300px",

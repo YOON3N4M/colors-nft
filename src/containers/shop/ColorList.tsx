@@ -20,7 +20,7 @@ const listVariants: Variants = {
     opacity: 1,
     transition: {
       //delayChildren: 0.5,
-      staggerChildren: 0.1,
+      // staggerChildren: 0.1,
     },
   },
 };

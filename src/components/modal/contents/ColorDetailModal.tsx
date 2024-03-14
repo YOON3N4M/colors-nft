@@ -28,8 +28,6 @@ const flipCardAnim: Variants = {
 
 export default function ColorDetailModal() {
   const selectedColor = useSelectedColor();
-  const { hue, displayName, hex, lightness, numbering } =
-    selectedColor as ArrangedColor;
 
   return (
     <>
@@ -41,7 +39,7 @@ export default function ColorDetailModal() {
             variants={flipCardAnim}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <FlipCard />
+            <FlipCard color={selectedColor} />
           </motion.div>
         </Center>
       </ModalContent>
