@@ -41,6 +41,9 @@ export default function FlipCard(props: FlipCardProps) {
     borderRadius: "1rem",
     padding: "12px 16px",
   };
+
+  function handleBuy() {}
+
   return (
     <Box
       className="flip-card"

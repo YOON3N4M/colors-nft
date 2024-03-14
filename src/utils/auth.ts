@@ -27,10 +27,10 @@ export async function registerUserDocument(user: User) {
     displayName: displayName ?? "anonymous",
     createdAt: new Date().getTime(),
     photoURL: photoURL ?? null,
-    lastEarn: null,
+    lastAutoEarn: null,
+    lastClickEarn: null,
     ownColors: [],
-    autoEarnToken: 0,
-    clickEarnToken: 0,
+    tokens: 0,
   };
 
   const ref = doc(dbService, "user", uid);

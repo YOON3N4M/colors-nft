@@ -5,9 +5,15 @@ export interface UserDocument {
   displayName: string;
   photoURL: string | null;
   //재화 관련
-  lastEarn: string | null;
+  lastAutoEarn: string | null;
+  lastClickEarn: string | null;
   createdAt: number;
   ownColors: ArrangedColor[];
-  autoEarnToken: number;
-  clickEarnToken: number;
+  tokens: number;
+}
+
+export interface ColorDocument extends ArrangedColor {
+  purchaseCount: number;
+  lastPurchaser: string;
+  lastPurchaseAt: number;
 }
