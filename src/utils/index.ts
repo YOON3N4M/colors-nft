@@ -54,3 +54,11 @@ export function suffleIndex(array: any[]) {
   }
   return array;
 }
+
+export function isDark(lightness: string) {
+  if (lightness === "11" || lightness === "12") {
+    return false;
+  } else {
+    return true;
+  }
+}

@@ -15,6 +15,7 @@ import { GiToken } from "react-icons/gi";
 
 import { FaArrowsRotate } from "react-icons/fa6";
 import { BiSolidColor } from "react-icons/bi";
+import { isDark } from "@/utils";
 
 /**
  * children으로 2개의 jsx 요소를 받으며 첫번째 요소가 앞면
@@ -49,8 +50,6 @@ export default function FlipCard() {
       }
       transition="transform 0.4s"
       style={{ transformStyle: "preserve-3d" }}
-      onClick={() => setIsFliped((prev) => !prev)}
-      cursor="pointer"
       boxShadow={"md"}
       _hover={{
         transform: "scale(1.1)".concat(
@@ -83,6 +82,8 @@ export default function FlipCard() {
             p={2}
             color="white"
             opacity={0.7}
+            cursor="pointer"
+            onClick={() => setIsFliped((prev) => !prev)}
           >
             <FaArrowsRotate />
           </Flex>
@@ -97,9 +98,9 @@ export default function FlipCard() {
             alignItems={"center"}
             borderRadius={"8px"}
             border={"2px solid"}
-            borderColor="brand.500"
+            borderColor={`#${hex}`}
             p="8px"
-            color={"brand.600"}
+            color={`#${hex}`}
             fontWeight="600"
             gap={2}
           >
@@ -116,7 +117,12 @@ export default function FlipCard() {
             <GiToken /> 1 token
           </Flex>
         </Flex>
-        <Button colorScheme={"brand"} w="100%" mt="auto">
+        <Button
+          w="100%"
+          mt="auto"
+          bg={`#${hex}`}
+          color={isDark(lightness) ? "white" : "gray"}
+        >
           buy with token
         </Button>
       </Flex>
@@ -126,8 +132,10 @@ export default function FlipCard() {
         transform="rotateY(180deg)"
         style={{ backfaceVisibility: "hidden" }}
         gridArea="1/1/1/1"
+        cursor={"pointer"}
+        onClick={() => setIsFliped((prev) => !prev)}
       >
-        <Center fontSize={"5xl"} color="brand.500">
+        <Center fontSize={"5xl"} color={`#${hex}`}>
           <BiSolidColor />
         </Center>
         <Box className="top">
