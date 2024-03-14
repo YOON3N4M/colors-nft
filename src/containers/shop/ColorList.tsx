@@ -9,6 +9,7 @@ interface ColorListProps {
   type: ColorCardType;
   filterLightness: string | null;
   filterHue: string | null;
+  filterSaturation: string | null;
 }
 
 const listVariants: Variants = {
@@ -25,13 +26,13 @@ const listVariants: Variants = {
 };
 
 function ColorList(props: ColorListProps) {
-  const { type, filterHue, filterLightness } = props;
+  const { type, filterHue, filterLightness, filterSaturation } = props;
 
   const contorols = useAnimationControls();
 
   useEffect(() => {
     contorols.start("show");
-  }, [type, filterHue, filterLightness]);
+  }, [type, filterHue, filterLightness, filterSaturation]);
 
   function RenderFilteredList() {
     let result = arrangedColorArray;
@@ -42,6 +43,10 @@ function ColorList(props: ColorListProps) {
 
     if (filterLightness) {
       result = filterColor(result, "lightness", filterLightness);
+    }
+
+    if (filterSaturation) {
+      result = filterColor(result, "saturation", filterSaturation);
     }
 
     const cards = result.map((color, idx) => {

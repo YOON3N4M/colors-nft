@@ -57,7 +57,7 @@ export default function ColorCard(props: ColorCardProps) {
           as={motion.div}
           w="180px"
           maxW={"180px"}
-          variants={scrollFadeInVariants}
+          // variants={scrollFadeInVariants}
           cursor={"pointer"}
           key={numbering}
           onClick={handleColorCardClick}

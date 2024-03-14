@@ -2,6 +2,7 @@ import { ColorCardType } from "@/components/ColorCard";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { GoPlus } from "react-icons/go";
+import { PiMinusLight } from "react-icons/pi";
 
 interface FiltersProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface FiltersProps {
 
 export default function Filters(props: FiltersProps) {
   const { filterName, children } = props;
-  const [isListOn, setIsListOn] = useState(false);
+  const [isListOn, setIsListOn] = useState(filterName === "Hue" ? true : false);
   return (
     <>
       <Box py={6} borderBottom="1px solid" borderColor={"base.200"}>
@@ -22,7 +23,7 @@ export default function Filters(props: FiltersProps) {
             _hover={{ color: "black" }}
             ml="auto"
           >
-            <GoPlus />
+            {isListOn ? <PiMinusLight /> : <GoPlus />}
           </Center>
         </Flex>
         {isListOn && <>{children}</>}

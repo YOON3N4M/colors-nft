@@ -11,6 +11,7 @@ export default function ContainerShop() {
   const [type, setType] = useState<ColorCardType>("card");
   const [filterLightness, setFilterLightness] = useState<string | null>(null);
   const [filterHue, setFilterHue] = useState<string | null>("01");
+  const [filterSaturation, setFilterSaturation] = useState<string | null>(null);
 
   const [isListOn, setIsListOn] = useState(false);
 
@@ -30,9 +31,11 @@ export default function ContainerShop() {
             type={type}
             filterLightness={filterLightness}
             filterHue={filterHue}
+            filterSaturation={filterSaturation}
             setType={setType}
             setFilterLightness={setFilterLightness}
             setFilterHue={setFilterHue}
+            setFilterSaturation={setFilterSaturation}
           />
         </Box>
         <Box flex={1}>
@@ -41,6 +44,7 @@ export default function ContainerShop() {
               type={type}
               filterHue={filterHue}
               filterLightness={filterLightness}
+              filterSaturation={filterSaturation}
             />
           )}
         </Box>

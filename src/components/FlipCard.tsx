@@ -12,8 +12,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { GiToken } from "react-icons/gi";
-import { IoIosColorPalette } from "react-icons/io";
+
 import { FaArrowsRotate } from "react-icons/fa6";
+import { BiSolidColor } from "react-icons/bi";
 
 /**
  * children으로 2개의 jsx 요소를 받으며 첫번째 요소가 앞면
@@ -24,7 +25,7 @@ import { FaArrowsRotate } from "react-icons/fa6";
 export default function FlipCard() {
   const [isFliped, setIsFliped] = useState(false);
   const selectedColor = useSelectedColor();
-  const { hex, displayName, numbering, lightness, hue } =
+  const { hex, displayName, numbering, lightness, hue, saturation } =
     selectedColor as ArrangedColor;
 
   const childrenStyle = {
@@ -127,7 +128,7 @@ export default function FlipCard() {
         gridArea="1/1/1/1"
       >
         <Center fontSize={"5xl"} color="brand.500">
-          <IoIosColorPalette />
+          <BiSolidColor />
         </Center>
         <Box className="top">
           <Center mt={2}>
@@ -176,7 +177,7 @@ export default function FlipCard() {
               <Box fontSize={"sm"} color="brand.500">
                 Saturation
               </Box>
-              <Box>{hue}</Box>
+              <Box>{saturation}</Box>
             </Center>
           </SimpleGrid>
         </Box>

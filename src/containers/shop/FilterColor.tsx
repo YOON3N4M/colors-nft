@@ -1,5 +1,5 @@
 import { ColorCardType } from "@/components/ColorCard";
-import { hue, lightness } from "@/constants/colors";
+import { hue, lightness, saturation } from "@/constants/colors";
 import { Box, Center, filter, Flex, Text } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
@@ -10,9 +10,11 @@ interface FilterColorProps {
   type: ColorCardType;
   filterLightness: string | null;
   filterHue: string | null;
+  filterSaturation: string | null;
   setType: React.Dispatch<React.SetStateAction<ColorCardType>>;
   setFilterLightness: React.Dispatch<React.SetStateAction<string | null>>;
   setFilterHue: React.Dispatch<React.SetStateAction<string | null>>;
+  setFilterSaturation: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const filterTitleVar: Variants = {
@@ -33,9 +35,11 @@ function FilterColor(props: FilterColorProps) {
     type,
     filterHue,
     filterLightness,
+    filterSaturation,
     setType,
     setFilterLightness,
     setFilterHue,
+    setFilterSaturation,
   } = props;
 
   const colorTransition = {
@@ -51,6 +55,17 @@ function FilterColor(props: FilterColorProps) {
     }
   }
 
+  function handleSaturationFilter(level: string) {
+    if (level === filterSaturation) {
+      setFilterSaturation(null);
+    } else {
+      setFilterSaturation(level);
+    }
+  }
+
+  function handleHueFilter(level: string) {
+    setFilterHue(level);
+  }
   return (
     <Box>
       <Box py={6} borderBottom="1px solid" borderColor={"base.200"}>
@@ -141,7 +156,31 @@ function FilterColor(props: FilterColorProps) {
               color={filterHue === level ? "black" : "#808080b8"}
               _hover={{ color: "black" }}
               __css={colorTransition}
-              onClick={() => setFilterHue(level)}
+              onClick={() => handleHueFilter(level)}
+            >
+              {level}
+            </Box>
+          ))}
+        </Flex>
+      </Filters>
+      <Filters filterName={"Saturation"}>
+        <Flex
+          pt={4}
+          gap={2}
+          as={motion.div}
+          variants={filterTitleVar}
+          initial="hidden"
+          animate="show"
+          flexWrap={"wrap"}
+        >
+          {saturation.map((level) => (
+            <Box
+              key={`hue-${level}`}
+              as={motion.button}
+              color={filterSaturation === level ? "black" : "#808080b8"}
+              _hover={{ color: "black" }}
+              __css={colorTransition}
+              onClick={() => handleSaturationFilter(level)}
             >
               {level}
             </Box>

@@ -10,6 +10,7 @@ export interface ArrangedColor extends Color {
   displayName: string;
   hue: string;
   lightness: string;
+  saturation: string;
 }
 
-export type Filter = "hue" | "lightness";
+export type Filter = "hue" | "lightness" | "saturation";

@@ -68,7 +68,8 @@ export const hue = [
   "63",
   "64",
 ];
-export const chroma = [
+export const saturation = [
+  "00",
   "01",
   "02",
   "03",
@@ -133,7 +134,6 @@ export const chroma = [
   "62",
   "63",
   "64",
-  "65",
 ];
 
 export const colorsArr = Object.entries(colors).map((color) => color);

@@ -4,8 +4,9 @@ import { ArrangedColor, ColorWithNumbering, Filter } from "@/types/color";
 export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
   const arranged = colorArr.map((color) => {
     const numbering = color[0];
-    const hue = numbering.substring(3, 5);
     const lightness = numbering.substring(0, 2);
+    const hue = numbering.substring(3, 5);
+    const saturation = numbering.substring(5, 7);
     const name = color[1].name;
     const displayName = name
       .split("-")
@@ -20,6 +21,7 @@ export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
       name,
       displayName,
       hex,
+      saturation,
     } as ArrangedColor;
   });
   return arranged;
@@ -34,9 +36,11 @@ export function filterColor(
     if (filter === "hue") {
       return color.hue === level;
     }
-
     if (filter === "lightness") {
       return color.lightness === level;
+    }
+    if (filter === "saturation") {
+      return color.saturation === level;
     }
   });
   console.log(filteredColor);
