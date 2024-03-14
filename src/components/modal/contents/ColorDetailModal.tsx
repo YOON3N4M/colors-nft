@@ -1,3 +1,4 @@
+import FlipCard from "@/components/FlipCard";
 import { useSelectedColor } from "@/store/modalStore";
 import { ArrangedColor } from "@/types/color";
 import {
@@ -28,35 +29,10 @@ export default function ColorDetailModal() {
   }
   return (
     <>
-      <ModalContent>
-        <Center w={"100%"} h="20vw" bg={`#${selectedColor?.hex}`}>
-          <Center
-            w={"100%"}
-            h="100%"
-            opacity={0}
-            transition={"opacity 0.5s"}
-            _hover={{ opacity: 1 }}
-          >
-            <Heading color={isDark() ? "white" : "black"} opacity="0.5">
-              #{hex}
-            </Heading>
-          </Center>
+      <ModalContent py={4} bg="" boxShadow={"none"}>
+        <Center minH={"600px"}>
+          <FlipCard></FlipCard>
         </Center>
-
-        <ModalBody flex={1}>
-          <Flex alignItems={"end"}>
-            <Heading>{selectedColor?.displayName}</Heading>
-          </Flex>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            bg={`#${selectedColor?.hex}`}
-            color={isDark() ? "white" : "gray"}
-            fontSize={"2xl"}
-          >
-            buy
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </>
   );
