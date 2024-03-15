@@ -18,6 +18,7 @@ import {
   updateUsersToken,
 } from "@/utils/firebaseApi";
 import { getUserDocument } from "@/utils/auth";
+import useTimer from "@/hooks/useTimer";
 
 interface UserTokenProps {
   user: UserDocument;
@@ -28,10 +29,20 @@ export default function UserToken(props: UserTokenProps) {
   const { tokens, lastAutoEarn, lastClickEarn, createdAt, uid } = user;
   const { setUser } = useAuthActions();
 
+  // auto earn
+  const { second: autoRemainingSecond, setBaseUnixTime: setAutoBaseUnixTime } =
+    useTimer(lastAutoEarn ?? createdAt, 30);
+  // daily earn
+  const {
+    second: dailyRemainingSecond,
+    setBaseUnixTime: setDailyBaseUnixTime,
+  } = useTimer(lastClickEarn ?? createdAt, 60 * 24);
+
   const [myTokens, setMyTokens] = useState(0);
   const [autoTokens, setAutoTokens] = useState(0);
   const [dailyTokens, setDailyTokens] = useState(0);
 
+  //30 분마다
   function autoTokenQty() {
     let timeDiffer = calculateTimeDiffer(createdAt);
 
@@ -42,7 +53,7 @@ export default function UserToken(props: UserTokenProps) {
     const availableToken = Math.floor(timeDiffer / 1800);
     return availableToken;
   }
-
+  // 1일마다
   function dailyTokenQty() {
     let timeDiffer = calculateTimeDiffer(createdAt);
 
@@ -51,7 +62,7 @@ export default function UserToken(props: UserTokenProps) {
     }
 
     const availableToken = Math.floor(timeDiffer / 86400);
-    console.log(availableToken);
+
     return availableToken;
   }
 
@@ -61,6 +72,8 @@ export default function UserToken(props: UserTokenProps) {
     await updateUsersToken(tokenQty, uid);
     await updateUsersLastAutoEarn(uid);
     const updatedUserDoc = await getUserDocument(uid);
+    if (!updatedUserDoc?.lastAutoEarn) return;
+    setAutoBaseUnixTime(updatedUserDoc?.lastAutoEarn);
     setUser(updatedUserDoc);
     setAutoTokens(0);
   }
@@ -71,6 +84,8 @@ export default function UserToken(props: UserTokenProps) {
     await updateUsersToken(tokenQty, uid);
     await updateUsersLastClickEarn(uid);
     const updatedUserDoc = await getUserDocument(uid);
+    if (!updatedUserDoc?.lastClickEarn) return;
+    setDailyBaseUnixTime(updatedUserDoc?.lastClickEarn);
     setUser(updatedUserDoc);
     setDailyTokens(0);
   }
@@ -114,7 +129,7 @@ export default function UserToken(props: UserTokenProps) {
                   Get {autoTokens} tokens
                 </>
               ) : (
-                "available in 30min"
+                `available in ${autoRemainingSecond}second`
               )}
             </Button>
             <Button
@@ -131,7 +146,7 @@ export default function UserToken(props: UserTokenProps) {
                   Get {autoTokens} tokens
                 </>
               ) : (
-                "available in 30min"
+                `available in ${dailyRemainingSecond}sec`
               )}
             </Button>
           </Flex>

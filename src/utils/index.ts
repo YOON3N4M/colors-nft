@@ -69,3 +69,13 @@ export function calculateTimeDiffer(unixTime: number) {
 
   return timeDiffetSec;
 }
+
+export function calculateRemainingTime(
+  baseTime: number,
+  targetTimeDifferMin: number
+) {
+  const targetUnixTime = baseTime + targetTimeDifferMin * 60 * 1000;
+  const remainingTime = calculateTimeDiffer(targetUnixTime);
+
+  return Math.round(remainingTime);
+}
