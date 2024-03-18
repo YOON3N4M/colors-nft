@@ -1,4 +1,4 @@
-import ContainerHome from "@/containers/ContainerHome";
+import ContainerHome from "@/containers/main/ContainerHome";
 import { Inter } from "next/font/google";
 import Curve from "./../components/layout/pageTransition/index";
 

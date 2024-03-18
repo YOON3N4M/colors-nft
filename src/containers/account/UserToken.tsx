@@ -91,7 +91,7 @@ export default function UserToken(props: UserTokenProps) {
   }
 
   useEffect(() => {
-    setMyTokens(user.tokens);
+    setMyTokens(tokens);
     setAutoTokens(autoTokenQty());
     setDailyTokens(dailyTokenQty());
   }, [user]);
@@ -143,7 +143,7 @@ export default function UserToken(props: UserTokenProps) {
                 <>
                   {" "}
                   <GiToken />
-                  Get {autoTokens} tokens
+                  Get {dailyTokens} tokens
                 </>
               ) : (
                 `available in ${dailyRemainingSecond}sec`

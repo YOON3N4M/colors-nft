@@ -1,3 +1,4 @@
+import { colorsArr } from "@/constants/colors";
 import { ArrangedColor, ColorWithNumbering, Filter } from "@/types/color";
 
 // data/json에 있는 컬러 어레인지 함수
@@ -24,6 +25,7 @@ export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
       saturation,
     } as ArrangedColor;
   });
+
   return arranged;
 }
 
@@ -78,4 +80,19 @@ export function calculateRemainingTime(
   const remainingTime = calculateTimeDiffer(targetUnixTime);
 
   return Math.round(remainingTime);
+}
+
+export function pickColors(numberings: string[]) {
+  const arrangedColorList = arrangeColorArray(colorsArr);
+
+  const result: ArrangedColor[] = [];
+
+  numberings.forEach((numbering) => {
+    const filtered = arrangedColorList.filter(
+      (color) => color.numbering === numbering
+    );
+    result.push(filtered[0]);
+  });
+
+  return result;
 }
