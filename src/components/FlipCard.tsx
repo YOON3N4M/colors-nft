@@ -1,5 +1,5 @@
 import { hue } from "@/constants/colors";
-import { useSelectedColor } from "@/store/modalStore";
+import { useModalActions, useSelectedColor } from "@/store/modalStore";
 import { ArrangedColor } from "@/types/color";
 import {
   Box,
@@ -10,12 +10,23 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiToken } from "react-icons/gi";
 
 import { FaArrowsRotate } from "react-icons/fa6";
 import { BiSolidColor } from "react-icons/bi";
-import { isDark } from "@/utils";
+import { calculateTimeDiffer, isDark } from "@/utils";
+import {
+  createColorDocument,
+  getColorDocument,
+  handlePurchaseColorDocument,
+  updateUsersColor,
+  updateUsersToken,
+} from "@/utils/firebaseApi";
+import { useAuthActions, useIsLogin, useUser } from "@/store/authStore";
+import useTimer from "@/hooks/useTimer";
+import { getUserDocument } from "@/utils/auth";
+import { UserDocument } from "@/types/document";
 
 /**
  * children으로 2개의 jsx 요소를 받으며 첫번째 요소가 앞면
@@ -25,12 +36,23 @@ import { isDark } from "@/utils";
  */
 
 interface FlipCardProps {
-  color: ArrangedColor | null;
+  color: ArrangedColor;
+  price?: number;
+  lastPurchaseAt?: number;
 }
 
 export default function FlipCard(props: FlipCardProps) {
   const { color } = props;
+  const user = useUser();
+  const isLogin = useIsLogin();
+  const { setUser } = useAuthActions();
+  const { setModalType } = useModalActions();
+
+  const [price, setPrice] = useState(1);
+  const [isAvailable, setIsAvailable] = useState(false);
   const [isFliped, setIsFliped] = useState(false);
+
+  const { second, setBaseUnixTime } = useTimer(null, 10);
 
   const { hex, displayName, numbering, lightness, hue, saturation } =
     color as ArrangedColor;
@@ -42,7 +64,67 @@ export default function FlipCard(props: FlipCardProps) {
     padding: "12px 16px",
   };
 
-  function handleBuy() {}
+  async function updateColorState(numbering: string) {
+    const colorData = await getColorDocument(numbering);
+    console.log("동작");
+    if (!colorData) {
+      setIsAvailable(true);
+      return;
+    } else {
+      setPrice(colorData.price);
+      const timeDiffer = calculateTimeDiffer(colorData.lastPurchaseAt);
+      if (timeDiffer > 600) {
+        setIsAvailable(true);
+      } else {
+        setBaseUnixTime(colorData.lastPurchaseAt);
+      }
+    }
+  }
+
+  async function handleBuy() {
+    if (!user) {
+      setModalType("sign-in");
+      return;
+    }
+
+    if (!confirm("sure?")) return;
+
+    const freshUserDocument = (await getUserDocument(user.uid)) as UserDocument;
+
+    let existColorDocument = await getColorDocument(numbering);
+
+    if (!existColorDocument) {
+      existColorDocument = await createColorDocument(color, user.uid);
+    } else {
+      const timeDiffer = calculateTimeDiffer(existColorDocument.lastPurchaseAt);
+
+      const checkTimeDiffer = timeDiffer > 600;
+      const checkTokens = freshUserDocument.tokens >= existColorDocument.price;
+
+      if (!checkTimeDiffer) {
+        confirm("can't buy this color now");
+        return;
+      }
+      if (!checkTokens) {
+        confirm("not enogh tokes");
+        return;
+      }
+    }
+    await updateUsersToken(-existColorDocument.price, user.uid);
+    //console.log("토큰업데이트 완료");
+    await updateUsersColor(existColorDocument, user.uid);
+    // console.log("유저 업데이트 완료");
+    await handlePurchaseColorDocument(user.uid, numbering);
+    // console.log("구매동장시 컬러 문서 수정완료");
+    await updateColorState(numbering);
+    //  console.log("컬러스테이트 업데이트 완료");
+    setIsAvailable(false);
+  }
+
+  useEffect(() => {
+    console.log("플립 온");
+    updateColorState(numbering);
+  }, []);
 
   return (
     <Box
@@ -123,7 +205,7 @@ export default function FlipCard(props: FlipCardProps) {
             >
               Price
             </Box>
-            <GiToken /> 1 token
+            <GiToken /> {price} token
           </Flex>
         </Flex>
         <Button
@@ -131,8 +213,10 @@ export default function FlipCard(props: FlipCardProps) {
           mt="auto"
           bg={`#${hex}`}
           color={isDark(lightness) ? "white" : "gray"}
+          onClick={() => handleBuy()}
+          isDisabled={!isAvailable}
         >
-          buy with token
+          {isAvailable ? "buy with token" : `available in ${second}s`}
         </Button>
       </Flex>
       <Box

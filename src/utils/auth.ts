@@ -1,5 +1,5 @@
 import { auth, dbService } from "@/firebase";
-import { UserDocument } from "@/types";
+import { UserDocument } from "@/types/document";
 import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -30,7 +30,7 @@ export async function registerUserDocument(user: User) {
     lastAutoEarn: null,
     lastClickEarn: null,
     ownColors: [],
-    tokens: 0,
+    tokens: 5,
   };
 
   const ref = doc(dbService, "user", uid);

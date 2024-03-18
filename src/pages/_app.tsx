@@ -4,7 +4,7 @@ import { auth } from "@/firebase";
 import { useAuthActions } from "@/store/authStore";
 import GlobalStyles from "@/styles/GlobalStyles";
 import { theme } from "@/styles/theme";
-import { UserDocument } from "@/types";
+import { UserDocument } from "@/types/document";
 import { getUserDocument } from "@/utils/auth";
 import { ChakraProvider } from "@chakra-ui/react";
 import { onAuthStateChanged, User } from "firebase/auth";

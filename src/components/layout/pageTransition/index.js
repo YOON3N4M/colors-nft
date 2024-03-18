@@ -8,7 +8,7 @@ import { text, curve, translate } from "./anim";
 import { Box } from "@chakra-ui/react";
 import { colorsArr } from "@/constants/colors";
 
-export const keyColor = "#e4eadf";
+export const keyColor = "hsl(185, 100%, 35%)";
 
 const routes = {
   "/": "Home",

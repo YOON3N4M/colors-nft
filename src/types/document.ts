@@ -16,4 +16,5 @@ export interface ColorDocument extends ArrangedColor {
   purchaseCount: number;
   lastPurchaser: string;
   lastPurchaseAt: number;
+  price: number;
 }

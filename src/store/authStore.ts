@@ -1,4 +1,4 @@
-import { UserDocument } from "@/types";
+import { UserDocument } from "@/types/document";
 import { create } from "zustand";
 
 interface AuthStore {

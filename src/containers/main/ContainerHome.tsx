@@ -16,6 +16,7 @@ import {
   transition,
 } from "@chakra-ui/react";
 import { delay, motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BiSolidColor } from "react-icons/bi";
 import { IoIosInformationCircleOutline } from "react-icons/io";
@@ -23,6 +24,8 @@ import DisplayFlipCard from "./DisplayFlipCard";
 
 export default function ContainerHome() {
   const cardColors = pickColors(["16-4728", "18-2436", "18-0135"]);
+  const router = useRouter();
+
   const [render, setRender] = useState(false);
 
   useEffect(() => {
@@ -59,6 +62,7 @@ export default function ContainerHome() {
                   colorScheme="brand"
                   alignItems={"center"}
                   gap={2}
+                  onClick={() => router.push("/shop")}
                 >
                   See the colors <BiSolidColor />
                 </Button>
@@ -67,6 +71,7 @@ export default function ContainerHome() {
                   colorScheme="brand"
                   alignItems={"center"}
                   gap={2}
+                  onClick={() => router.push("/about")}
                 >
                   More information <IoIosInformationCircleOutline />
                 </Button>
@@ -78,6 +83,9 @@ export default function ContainerHome() {
               </Box>
             </Box>
           </Flex>
+          <Box py={8}>
+            <Heading textAlign={"center"}>Tranding Color</Heading>
+          </Box>
         </Contents>
       )}
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthActions, useUser } from "@/store/authStore";
-import { UserDocument } from "@/types";
+import { UserDocument } from "@/types/document";
 import {
   Box,
   Button,
