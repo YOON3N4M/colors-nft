@@ -27,6 +27,7 @@ import { useAuthActions, useIsLogin, useUser } from "@/store/authStore";
 import useTimer from "@/hooks/useTimer";
 import { getUserDocument } from "@/utils/auth";
 import { ColorDocument, UserDocument } from "@/types/document";
+import useColorPurchase from "@/hooks/useColorPurchase";
 
 /**
  * children으로 2개의 jsx 요소를 받으며 첫번째 요소가 앞면
@@ -44,9 +45,9 @@ interface FlipCardProps {
 export default function FlipCard(props: FlipCardProps) {
   const { color } = props;
   const user = useUser();
-  const isLogin = useIsLogin();
-  const { setUser } = useAuthActions();
+
   const { setModalType } = useModalActions();
+  const { purchaseColor } = useColorPurchase();
 
   const [price, setPrice] = useState(1);
   const [isAvailable, setIsAvailable] = useState(false);
@@ -88,34 +89,7 @@ export default function FlipCard(props: FlipCardProps) {
       setModalType("sign-in");
       return;
     }
-
-    const freshUserDocument = (await getUserDocument(user.uid)) as UserDocument;
-    setUser(freshUserDocument);
-    let existColorDocument = await getColorDocument(numbering);
-
-    if (!existColorDocument) {
-      existColorDocument = await createColorDocument(color, user.uid);
-    } else {
-      const timeDiffer = calculateTimeDiffer(existColorDocument.lastPurchaseAt);
-
-      const checkTimeDiffer = timeDiffer > 600;
-      const checkTokens = freshUserDocument.tokens >= existColorDocument.price;
-
-      if (!checkTimeDiffer) {
-        confirm("can't buy this color now");
-        return;
-      }
-      if (!checkTokens) {
-        confirm("not enough tokens");
-        return;
-      }
-    }
-    await updateUsersToken(-existColorDocument.price, user.uid);
-    //console.log("토큰업데이트 완료");
-    await updateUsersColor(existColorDocument, user.uid);
-    // console.log("유저 업데이트 완료");
-    await handlePurchaseColorDocument(user.uid, numbering);
-    // console.log("구매동장시 컬러 문서 수정완료");
+    await purchaseColor(user.uid, color);
     await updateColorState(numbering);
     //  console.log("컬러스테이트 업데이트 완료");
     setIsAvailable(false);
