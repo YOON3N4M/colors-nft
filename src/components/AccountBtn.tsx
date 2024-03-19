@@ -2,6 +2,11 @@ import { auth } from "@/firebase";
 import { useAuthActions, useIsLogin, useUser } from "@/store/authStore";
 import { useModalActions } from "@/store/modalStore";
 import {
+  getUserDocument,
+  googleLogin,
+  registerUserDocument,
+} from "@/utils/auth";
+import {
   Box,
   Button,
   Menu,
@@ -19,8 +24,23 @@ export default function AccountBtn() {
   const isLogin = useIsLogin();
   const user = useUser();
 
-  function handleSignInClick() {
-    setModalType("sign-in");
+  async function handleSignInClick() {
+    const res = await googleLogin();
+    let userDoc = null;
+
+    if (!res.status) return;
+    if (!res.userData) return;
+    // ^ db에 유저 정보 조회
+    const docRes = await getUserDocument(res.userData.uid);
+
+    userDoc = docRes;
+    // ^ 없으면 document 생성
+    if (!docRes) {
+      userDoc = await registerUserDocument(res.userData);
+    }
+
+    setIsLogin(true);
+    setUser(userDoc);
   }
 
   async function handleSignOutClick() {
