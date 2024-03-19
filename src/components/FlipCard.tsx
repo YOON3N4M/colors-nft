@@ -52,6 +52,8 @@ export default function FlipCard(props: FlipCardProps) {
   const [isAvailable, setIsAvailable] = useState(false);
   const [isFliped, setIsFliped] = useState(false);
 
+  const [isAlert, setIsAlert] = useState(true);
+
   const { second, setBaseUnixTime } = useTimer(null, 10);
 
   const { hex, displayName, numbering, lightness, hue, saturation } =
@@ -87,8 +89,6 @@ export default function FlipCard(props: FlipCardProps) {
       return;
     }
 
-    if (!confirm("sure?")) return;
-
     const freshUserDocument = (await getUserDocument(user.uid)) as UserDocument;
     setUser(freshUserDocument);
     let existColorDocument = await getColorDocument(numbering);
@@ -106,7 +106,7 @@ export default function FlipCard(props: FlipCardProps) {
         return;
       }
       if (!checkTokens) {
-        confirm("not enogh tokes");
+        confirm("not enough tokens");
         return;
       }
     }
@@ -155,6 +155,7 @@ export default function FlipCard(props: FlipCardProps) {
         ),
       }}
     >
+      {isAlert && <></>}
       <Flex
         flexDirection={"column"}
         className="flip-front"
