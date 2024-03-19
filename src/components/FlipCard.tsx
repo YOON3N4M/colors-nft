@@ -90,7 +90,7 @@ export default function FlipCard(props: FlipCardProps) {
     if (!confirm("sure?")) return;
 
     const freshUserDocument = (await getUserDocument(user.uid)) as UserDocument;
-
+    setUser(freshUserDocument);
     let existColorDocument = await getColorDocument(numbering);
 
     if (!existColorDocument) {
