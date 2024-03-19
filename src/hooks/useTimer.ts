@@ -13,7 +13,7 @@ export default function useTimer(
   targetTimeDifferMin: number
 ) {
   const [baseUnixTime, setBaseUnixTime] = useState(unixTime);
-  const [second, setSecond] = useState(0);
+  const [second, setSecond] = useState(-1);
 
   useEffect(() => {
     if (!baseUnixTime) return;

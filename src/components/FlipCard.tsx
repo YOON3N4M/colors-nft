@@ -126,6 +126,11 @@ export default function FlipCard(props: FlipCardProps) {
     updateColorState(numbering);
   }, []);
 
+  useEffect(() => {
+    if (second === 0) {
+      setIsAvailable(true);
+    }
+  }, [second]);
   return (
     <Box
       className="flip-card"
