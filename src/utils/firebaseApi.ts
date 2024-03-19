@@ -3,8 +3,10 @@ import { ColorDocument } from "@/types/document";
 import { ArrangedColor, Color } from "@/types/color";
 import {
   arrayUnion,
+  collection,
   doc,
   getDoc,
+  getDocs,
   increment,
   setDoc,
   updateDoc,
@@ -82,4 +84,17 @@ export async function handlePurchaseColorDocument(
     lastPurchaser: uid,
     lastPurchaseAt: new Date().getTime(),
   });
+}
+
+export async function getAllColorDocuments() {
+  const querySnapshot = await getDocs(collection(dbService, "color"));
+  const result: ColorDocument[] = [];
+  querySnapshot.forEach((doc) => {
+    if (doc.exists()) {
+      const data = doc.data() as ColorDocument;
+      result.push(data);
+    }
+  });
+
+  return result;
 }

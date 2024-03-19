@@ -1,5 +1,6 @@
 import { colorsArr } from "@/constants/colors";
 import { ArrangedColor, ColorWithNumbering, Filter } from "@/types/color";
+import { ColorDocument } from "@/types/document";
 
 // data/json에 있는 컬러 어레인지 함수
 export function arrangeColorArray(colorArr: ColorWithNumbering[]) {
@@ -95,4 +96,10 @@ export function pickColors(numberings: string[]) {
   });
 
   return result;
+}
+
+export function sortByPurchaseCount(colorDocuments: ColorDocument[]) {
+  colorDocuments.sort((a, b) => b.purchaseCount - a.purchaseCount);
+
+  return colorDocuments;
 }

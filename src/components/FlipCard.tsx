@@ -26,7 +26,7 @@ import {
 import { useAuthActions, useIsLogin, useUser } from "@/store/authStore";
 import useTimer from "@/hooks/useTimer";
 import { getUserDocument } from "@/utils/auth";
-import { UserDocument } from "@/types/document";
+import { ColorDocument, UserDocument } from "@/types/document";
 
 /**
  * children으로 2개의 jsx 요소를 받으며 첫번째 요소가 앞면
@@ -36,7 +36,7 @@ import { UserDocument } from "@/types/document";
  */
 
 interface FlipCardProps {
-  color: ArrangedColor;
+  color: ArrangedColor | ColorDocument;
   price?: number;
   lastPurchaseAt?: number;
 }

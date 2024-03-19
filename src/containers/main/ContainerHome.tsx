@@ -21,6 +21,7 @@ import React, { useEffect, useState } from "react";
 import { BiSolidColor } from "react-icons/bi";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import DisplayFlipCard from "./DisplayFlipCard";
+import Trending from "./Trending";
 
 export default function ContainerHome() {
   const cardColors = pickColors(["16-4728", "18-2436", "18-0135"]);
@@ -84,7 +85,8 @@ export default function ContainerHome() {
             </Box>
           </Flex>
           <Box py={8}>
-            <Heading textAlign={"center"}>Tranding Color</Heading>
+            <Heading textAlign={"center"}>Trending Color</Heading>
+            <Trending />
           </Box>
         </Contents>
       )}
