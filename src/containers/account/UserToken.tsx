@@ -129,7 +129,7 @@ export default function UserToken(props: UserTokenProps) {
                   Get {autoTokens} tokens
                 </>
               ) : (
-                `available in ${autoRemainingSecond}second`
+                `available in ${autoRemainingSecond}s`
               )}
             </Button>
             <Button
@@ -146,7 +146,7 @@ export default function UserToken(props: UserTokenProps) {
                   Get {dailyTokens} tokens
                 </>
               ) : (
-                `available in ${dailyRemainingSecond}sec`
+                `available in ${dailyRemainingSecond}s`
               )}
             </Button>
           </Flex>

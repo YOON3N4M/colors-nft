@@ -10,8 +10,10 @@ import {
   FormLabel,
   Input,
   SimpleGrid,
+  Text,
   useToast,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function UserProfile() {
@@ -117,15 +119,32 @@ export default function UserProfile() {
                     p={2}
                     gap={2}
                   >
-                    {ownColors.map((color) => (
-                      <Box
-                        bg={`#${color.hex}`}
-                        w="25px"
-                        h={"25px"}
-                        borderRadius="50%"
-                        onClick={() => setColor(`#${color.hex}`)}
-                      />
-                    ))}
+                    {ownColors.length > 0 ? (
+                      <>
+                        {ownColors.map((color) => (
+                          <Box
+                            bg={`#${color.hex}`}
+                            w="25px"
+                            h={"25px"}
+                            borderRadius="50%"
+                            onClick={() => setColor(`#${color.hex}`)}
+                          />
+                        ))}
+                      </>
+                    ) : (
+                      <Box p={2}>
+                        <Text color={"base.400"}>
+                          you have no color. <br />
+                          purchase your favorite
+                        </Text>
+                        <Box
+                          color={"brand.300"}
+                          _hover={{ color: "brand.500" }}
+                        >
+                          <Link href={"/shop"}>to Shop</Link>
+                        </Box>
+                      </Box>
+                    )}
                   </Flex>
                 </Box>
               )}
