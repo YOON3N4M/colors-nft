@@ -10,6 +10,7 @@ export interface UserDocument {
   createdAt: number;
   ownColors: ArrangedColor[];
   tokens: number;
+  profileColor?: string;
 }
 
 export interface ColorDocument extends ArrangedColor {

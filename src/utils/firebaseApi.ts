@@ -29,6 +29,12 @@ export async function updateUserName(newName: string, uid: string) {
   });
 }
 
+export async function updateUserProfileColor(color: string, uid: string) {
+  const ref = doc(dbService, "user", uid);
+  await updateDoc(ref, {
+    profileColor: color,
+  });
+}
 export async function updateUsersLastAutoEarn(uid: string) {
   const ref = doc(dbService, "user", uid);
   await updateDoc(ref, {

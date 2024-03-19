@@ -1,23 +1,33 @@
 import { useAuthActions, useUser } from "@/store/authStore";
 import { UserDocument } from "@/types/document";
 import { getUserDocument } from "@/utils/auth";
-import { updateUserName } from "@/utils/firebaseApi";
+import { updateUserName, updateUserProfileColor } from "@/utils/firebaseApi";
 import {
   Box,
   Button,
   Center,
+  Flex,
   FormLabel,
   Input,
+  SimpleGrid,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 export default function UserProfile() {
   const user = useUser();
-  const { displayName, uid } = user as UserDocument;
+  const {
+    displayName,
+    uid,
+    profileColor = "#c2c2c2",
+    ownColors,
+  } = user as UserDocument;
   const { setUser } = useAuthActions();
   const [userName, setUserName] = useState("");
   const [disable, setDisable] = useState(true);
+  const [color, setColor] = useState(profileColor);
+  const [isPalette, setIsPalette] = useState(false);
+
   const toast = useToast();
 
   function handleUserNameChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -26,7 +36,13 @@ export default function UserProfile() {
 
   async function handleProfileChange(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await updateUserName(userName, uid);
+    if (userName !== displayName) {
+      await updateUserName(userName, uid);
+    }
+    if (color !== profileColor) {
+      await updateUserProfileColor(color, uid);
+    }
+
     const refreshUser = await getUserDocument(uid);
     setUser(refreshUser);
     setDisable(true);
@@ -35,7 +51,7 @@ export default function UserProfile() {
       position: "bottom-left",
       render: () => (
         <Box color="white" p={3} bg="brand.500" borderRadius={"8px"}>
-          User Name Changed.
+          Profile Changed.
         </Box>
       ),
     });
@@ -43,6 +59,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     setUserName(displayName);
+    setColor(profileColor);
   }, []);
 
   useEffect(() => {
@@ -52,6 +69,14 @@ export default function UserProfile() {
       setDisable(true);
     }
   }, [userName]);
+
+  useEffect(() => {
+    if (profileColor !== color) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }, [color]);
 
   return (
     <Center w="100%" mt={12}>
@@ -72,7 +97,39 @@ export default function UserProfile() {
               gap: "20px",
             }}
           >
-            <Box w={20} h={20} bg="brand.400" borderRadius={"50%"}></Box>
+            <Box position={"relative"} cursor="pointer">
+              <Box
+                w={20}
+                h={20}
+                bg={color}
+                borderRadius={"50%"}
+                onClick={() => setIsPalette((prev) => !prev)}
+              ></Box>
+              {isPalette && (
+                <Box top={0} left={"110%"} position={"absolute"}>
+                  <Flex
+                    bg={"base.50"}
+                    borderRadius="8px"
+                    boxShadow={"md"}
+                    flexWrap="wrap"
+                    w="250px"
+                    maxW={"250px"}
+                    p={2}
+                    gap={2}
+                  >
+                    {ownColors.map((color) => (
+                      <Box
+                        bg={`#${color.hex}`}
+                        w="25px"
+                        h={"25px"}
+                        borderRadius="50%"
+                        onClick={() => setColor(`#${color.hex}`)}
+                      />
+                    ))}
+                  </Flex>
+                </Box>
+              )}
+            </Box>
             <Box w={"140%"}>
               <FormLabel mt={4}>User Name</FormLabel>
 
