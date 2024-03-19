@@ -33,14 +33,16 @@ export default function ColorDetailModal() {
     <>
       <ModalContent py={4} bg="" boxShadow={"none"}>
         <Center minH={"600px"}>
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={flipCardAnim}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <FlipCard color={selectedColor} />
-          </motion.div>
+          {selectedColor && (
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={flipCardAnim}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <FlipCard color={selectedColor} />
+            </motion.div>
+          )}
         </Center>
       </ModalContent>
     </>

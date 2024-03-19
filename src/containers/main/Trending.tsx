@@ -21,7 +21,7 @@ export default function Trending() {
     <Box mt={12}>
       <Carousel slidePerView={4} autoPlay={true} loop={true}>
         {colors.map((color) => (
-          <Box transform={"scale(0.9)"}>
+          <Box key={`${color.numbering}-trending`} transform={"scale(0.9)"}>
             <FlipCard color={color} />
           </Box>
         ))}

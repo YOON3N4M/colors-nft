@@ -21,6 +21,7 @@ export default function DisplayFlipCard(props: DisplayFlipCardProps) {
       <Box position={"relative"} display="flex" w="min-content">
         {colors.map((color, idx) => (
           <Box
+            key={`${color.numbering}`}
             onMouseEnter={() => setHoverd(idx)}
             onMouseLeave={() => setHoverd(0)}
             position={idx > 0 ? "absolute" : "initial"}

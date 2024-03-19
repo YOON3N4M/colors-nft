@@ -31,8 +31,9 @@ export default function Carousel(props: CarouselProps) {
   return (
     <Box className="embla-wrap" ref={emlaRef} overflow="hidden">
       <Box className="embla-container" display={"flex"}>
-        {children.map((child) => (
+        {children.map((child, idx) => (
           <Center
+            key={idx}
             className="embla-slide"
             minW={0}
             flex={`0 0 ${100 / slidePerView}%`}
