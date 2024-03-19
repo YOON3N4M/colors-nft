@@ -22,6 +22,13 @@ export async function updateUsersToken(count: number, uid: string) {
   });
 }
 
+export async function updateUserName(newName: string, uid: string) {
+  const ref = doc(dbService, "user", uid);
+  await updateDoc(ref, {
+    displayName: newName,
+  });
+}
+
 export async function updateUsersLastAutoEarn(uid: string) {
   const ref = doc(dbService, "user", uid);
   await updateDoc(ref, {

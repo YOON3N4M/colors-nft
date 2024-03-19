@@ -4,6 +4,7 @@ import { getUserDocument } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 
 import React, { useEffect } from "react";
+import UserProfile from "./UserProfile";
 
 import UserToken from "./UserToken";
 
@@ -29,5 +30,14 @@ export default function ContainerAccount() {
     return;
   }
 
-  return <Contents>{user && <UserToken user={user} />}</Contents>;
+  return (
+    <Contents>
+      {user && (
+        <>
+          <UserToken user={user} />
+          <UserProfile />
+        </>
+      )}
+    </Contents>
+  );
 }
