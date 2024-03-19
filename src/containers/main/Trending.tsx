@@ -1,3 +1,4 @@
+import Carousel from "@/components/Carousel";
 import FlipCard from "@/components/FlipCard";
 import { ColorDocument } from "@/types/document";
 import { sortByPurchaseCount } from "@/utils";
@@ -18,13 +19,13 @@ export default function Trending() {
   }, []);
   return (
     <Box mt={12}>
-      <SimpleGrid columns={4}>
+      <Carousel slidePerView={4} autoPlay={true} loop={true}>
         {colors.map((color) => (
           <Box transform={"scale(0.9)"}>
             <FlipCard color={color} />
           </Box>
         ))}
-      </SimpleGrid>
+      </Carousel>
     </Box>
   );
 }
