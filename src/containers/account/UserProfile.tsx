@@ -121,8 +121,9 @@ export default function UserProfile() {
                   >
                     {ownColors.length > 0 ? (
                       <>
-                        {ownColors.map((color) => (
+                        {ownColors.map((color, idx) => (
                           <Box
+                            key={`${color.numbering}-idx `}
                             bg={`#${color.hex}`}
                             w="25px"
                             h={"25px"}

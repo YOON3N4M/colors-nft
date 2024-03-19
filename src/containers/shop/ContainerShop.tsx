@@ -10,7 +10,7 @@ import { animate, motion } from "framer-motion";
 export default function ContainerShop() {
   const [type, setType] = useState<ColorCardType>("card");
   const [filterLightness, setFilterLightness] = useState<string | null>(null);
-  const [filterHue, setFilterHue] = useState<string | null>("01");
+  const [filterHue, setFilterHue] = useState<string | null>("39");
   const [filterSaturation, setFilterSaturation] = useState<string | null>(null);
 
   const [isListOn, setIsListOn] = useState(false);

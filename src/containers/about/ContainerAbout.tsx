@@ -89,11 +89,11 @@ export default function ContainerAbout() {
           >
             <Heading>Color Usage</Heading>
             <Text mt={4}>
-              The ways you can utilize the colors you've purchased are as
+              The ways you can utilize the colors you&apos;ve purchased are as
               follows. You can set them as your profile color, change the
               transition color between page changes, and also use them in the
-              "Playground" where you can experience various motions. (The
-              Playground feature will be added soon!)
+              &quot;Playground&quot; where you can experience various motions.
+              (The Playground feature will be added soon!)
             </Text>
           </Box>
         </SimpleGrid>
