@@ -40,8 +40,8 @@ export default function ContainerAbout() {
               by Pantone as if they were products. Currently, it does not
               include an actual payment system, and you can use the service by
               utilizing tokens, a type of virtual currency provided internally.
-              Even if you don't use the purchase service please look through the
-              color lists and discover colors you like!
+              Even if you don&apos;t use the purchase service please look
+              through the color lists and discover colors you like!
             </Text>
           </Box>
           <Box
@@ -58,9 +58,9 @@ export default function ContainerAbout() {
               30 minutes (hereafter 30-minute tokens) and tokens that are
               generated every 24 hours (hereafter daily tokens). One thing to
               note is that while 30-minute tokens will accumulate even if you
-              don't claim them, for daily tokens, only 1 token will be generated
-              24 hours after the last claim, and no additional tokens will be
-              generated if you don't claim it.
+              don&apos;t claim them, for daily tokens, only 1 token will be
+              generated 24 hours after the last claim, and no additional tokens
+              will be generated if you don&apos;t claim it.
             </Text>
           </Box>
           <Box
@@ -80,6 +80,22 @@ export default function ContainerAbout() {
               low price!
             </Text>
           </Box>
+          <Box
+            p={8}
+            boxShadow="sm"
+            border="1px solid"
+            borderColor={"base.300"}
+            borderRadius="8px"
+          >
+            <Heading>Color Usage</Heading>
+            <Text mt={4}>
+              The ways you can utilize the colors you've purchased are as
+              follows. You can set them as your profile color, change the
+              transition color between page changes, and also use them in the
+              "Playground" where you can experience various motions. (The
+              Playground feature will be added soon!)
+            </Text>
+          </Box>
         </SimpleGrid>
       </Flex>
 
@@ -94,7 +110,7 @@ export default function ContainerAbout() {
         borderRadius={"8px"}
         boxShadow="sm"
       >
-        <Flex>
+        <Flex w="20%">
           <Center flexDirection={"column"}>
             <ColorCard type="card" color={color[0]} />
             <Text
@@ -146,9 +162,9 @@ export default function ContainerAbout() {
                 Lightness
               </Box>
               <Box mt={2}>
-                there are levels from '11' to '19', with lower numbers being
-                brighter and higher numbers being darker. <br /> In the example,
-                16 is lightness.
+                there are levels from &apos;11&apos; to &apos;19&apos;, with
+                lower numbers being brighter and higher numbers being darker.{" "}
+                <br /> In the example, 16 is lightness.
               </Box>
             </Box>
           </Flex>
@@ -167,8 +183,9 @@ export default function ContainerAbout() {
                 Hue
               </Box>
               <Box mt={2}>
-                there are levels from '01' to '64', including the natural color
-                (center point) '00'. <br />
+                there are levels from &apos;01&apos; to &apos;64&apos;,
+                including the natural color (center point) &apos;00&apos;.{" "}
+                <br />
                 In the example, 47 is hue.
               </Box>
             </Box>
@@ -189,10 +206,10 @@ export default function ContainerAbout() {
                 Saturation
               </Box>
               <Box mt={2}>
-                there are levels from '01' to '64', including the natural color
-                '00'. Lower numbers indicate lower saturation colors, while
-                higher numbers mean higher saturation. In the example, 28 is
-                saturation.
+                there are levels from &apos;01&apos; to &apos;64&apos;,
+                including the natural color &apos;00&apos;. Lower numbers
+                indicate lower saturation colors, while higher numbers mean
+                higher saturation. In the example, 28 is saturation.
               </Box>
             </Box>
           </Flex>
