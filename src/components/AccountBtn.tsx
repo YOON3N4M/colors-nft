@@ -15,7 +15,7 @@ import React from "react";
 
 export default function AccountBtn() {
   const { setModalType } = useModalActions();
-  const { setIsLogin } = useAuthActions();
+  const { setIsLogin, setUser } = useAuthActions();
   const isLogin = useIsLogin();
   const user = useUser();
 
@@ -25,6 +25,7 @@ export default function AccountBtn() {
 
   async function handleSignOutClick() {
     await signOut(auth);
+    setUser(null);
     setIsLogin(false);
   }
   return (
