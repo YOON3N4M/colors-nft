@@ -69,7 +69,6 @@ export default function FlipCard(props: FlipCardProps) {
 
   async function updateColorState(numbering: string) {
     const colorData = await getColorDocument(numbering);
-    console.log("동작");
     if (!colorData) {
       setIsAvailable(true);
       return;
@@ -96,7 +95,6 @@ export default function FlipCard(props: FlipCardProps) {
   }
 
   useEffect(() => {
-    console.log("플립 온");
     updateColorState(numbering);
   }, []);
 
@@ -105,6 +103,7 @@ export default function FlipCard(props: FlipCardProps) {
       setIsAvailable(true);
     }
   }, [second]);
+
   return (
     <Box
       className="flip-card"
