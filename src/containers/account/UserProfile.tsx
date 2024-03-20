@@ -83,7 +83,7 @@ export default function UserProfile() {
   return (
     <Center w="100%" mt={12}>
       <Center
-        w={"50%"}
+        w={{ mo: "100%", pc: "50%" }}
         borderRadius={"8px"}
         border="1px solid"
         borderColor={"base.300"}
@@ -108,14 +108,19 @@ export default function UserProfile() {
                 onClick={() => setIsPalette((prev) => !prev)}
               ></Box>
               {isPalette && (
-                <Box top={0} left={"110%"} position={"absolute"}>
+                <Box
+                  top={{ pc: 0, mo: "80%" }}
+                  left={{ mo: "0%", pc: "110%" }}
+                  position={"absolute"}
+                  zIndex="100"
+                >
                   <Flex
                     bg={"base.50"}
                     borderRadius="8px"
                     boxShadow={"md"}
                     flexWrap="wrap"
-                    w="250px"
-                    maxW={"250px"}
+                    w="150px"
+                    maxW={"150px"}
                     p={2}
                     gap={2}
                   >
@@ -128,7 +133,10 @@ export default function UserProfile() {
                             w="25px"
                             h={"25px"}
                             borderRadius="50%"
-                            onClick={() => setColor(`#${color.hex}`)}
+                            onClick={() => {
+                              setColor(`#${color.hex}`);
+                              setIsPalette(false);
+                            }}
                           />
                         ))}
                       </>
@@ -150,7 +158,7 @@ export default function UserProfile() {
                 </Box>
               )}
             </Box>
-            <Box w={"140%"}>
+            <Box w={{ pc: "140%", mo: "100%" }}>
               <FormLabel mt={4}>User Name</FormLabel>
 
               <Input

@@ -101,20 +101,21 @@ export default function UserToken(props: UserTokenProps) {
       <Flex
         py={12}
         borderRadius="8px"
-        w="50%"
+        w={{ pc: "50%", mo: "100%" }}
         h={"100%"}
         border={"1px solid "}
         borderColor={"base.300"}
         gap={4}
+        flexDirection={{ pc: "row", mo: "column" }}
       >
-        <Box w={"50%"}>
+        <Box w={{ pc: "50%", mo: "100%" }}>
           <Center color={"brand.500"} h={"100%"} flexDirection="column">
             <Text fontSize={"4xl"}>{myTokens}</Text>
             <Text>My tokens</Text>
           </Center>
         </Box>
-        <Divider orientation="vertical" h={"100px"} />
-        <Center w={"50%"}>
+        <Divider orientation="vertical" h={{ pc: "100px" }} />
+        <Center w={{ pc: "50%", mo: "100%" }}>
           <Flex flexDirection={"column"} w="80%" gap={4}>
             <Button
               gap={2}
