@@ -24,6 +24,7 @@ import ColorList from "./ColorList";
 import { animate, motion } from "framer-motion";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import useDeviceDetect from "@/hooks/useDeviceDetect";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 export default function ContainerShop() {
   const [type, setType] = useState<ColorCardType>("card");
@@ -46,6 +47,7 @@ export default function ContainerShop() {
 
   return (
     <Contents>
+      <ScrollTopButton />
       <Flex alignItems={"center"}>
         <Heading fontWeight={500}>Colors</Heading>
         <Box display={{ pc: "none" }} ml="auto">

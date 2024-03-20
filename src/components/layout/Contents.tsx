@@ -4,6 +4,7 @@ import React from "react";
 export default function Contents({ children }: React.PropsWithChildren) {
   return (
     <Box
+      position={"relative"}
       maxW={"1280px"}
       m="0 auto"
       py={{ pc: 24, mo: 4 }}
