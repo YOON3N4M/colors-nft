@@ -32,7 +32,7 @@ export default function ColorDetailModal() {
   return (
     <>
       <ModalContent py={4} bg="" boxShadow={"none"}>
-        <Center minH={"600px"}>
+        <Center>
           {selectedColor && (
             <motion.div
               initial="hidden"
