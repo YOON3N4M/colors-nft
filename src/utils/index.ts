@@ -46,7 +46,7 @@ export function filterColor(
       return color.saturation === level;
     }
   });
-  console.log(filteredColor);
+  // console.log(filteredColor);
   return filteredColor;
 }
 

@@ -88,7 +88,7 @@ export default function ColorCard(props: ColorCardProps) {
           as={motion.button}
           variants={scrollFadeInVariants}
           display={"inline"}
-          fontSize={80}
+          fontSize={{ pc: 80, mo: 40 }}
           fontWeight={500}
           _hover={{ color: `#${hex}` }}
           cursor={"pointer"}

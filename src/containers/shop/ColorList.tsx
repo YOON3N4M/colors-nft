@@ -2,7 +2,7 @@ import { Box, SimpleGrid } from "@chakra-ui/react";
 import ColorCard, { ColorCardType } from "@/components/ColorCard";
 import { arrangedColorArray } from "@/constants/colors";
 import { motion, useAnimationControls, Variants } from "framer-motion";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { filterColor } from "@/utils";
 
 interface ColorListProps {
@@ -69,7 +69,7 @@ function ColorList(props: ColorListProps) {
         // layout
         display={type === "text" ? "flex" : "grid"}
         flexWrap={type === "text" ? "wrap" : "initial"}
-        columns={type === "card" ? 4 : 4}
+        columns={{ pc: type === "card" ? 4 : 4, mo: type === "card" ? 2 : 2 }}
         spacingX={type === "text" ? 0 : 6}
         spacingY={type === "text" ? 0 : 8}
         justifyContent={"center"}
@@ -86,4 +86,4 @@ function ColorList(props: ColorListProps) {
   );
 }
 
-export default ColorList;
+export default React.memo(ColorList);
