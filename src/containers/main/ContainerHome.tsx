@@ -43,8 +43,14 @@ export default function ContainerHome() {
             py={8}
             justifyContent="space-between"
           >
-            <Box className="left" w={{ pc: "50%" }} py={8} flexWrap="wrap">
-              <Heading fontSize={"6xl"}>
+            <Box
+              className="left"
+              w={{ pc: "50%" }}
+              py={8}
+              flexWrap="wrap"
+              textAlign={{ pc: "initial", mo: "center" }}
+            >
+              <Heading fontSize={{ pc: "6xl", mo: "4xl" }}>
                 Welcome to the <br />
                 <Text display={"inline"} color={`#${cardColors[0].hex}`}>
                   colorful&nbsp;
@@ -78,7 +84,7 @@ export default function ContainerHome() {
                 </Button>
               </Flex>
             </Box>
-            <Box flex={1}>
+            <Box flex={1} display={{ mo: "none", pc: "initial" }}>
               <Box display="flex" justifyContent={"center"}>
                 <DisplayFlipCard colors={cardColors} />
               </Box>
