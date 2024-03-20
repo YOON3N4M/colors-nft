@@ -26,7 +26,7 @@ export default function ContainerAbout() {
   return (
     <Contents>
       <Flex as="section">
-        <SimpleGrid w="100%" h="100%" columns={2} spacing={12}>
+        <SimpleGrid w="100%" h="100%" columns={{ mo: 1, pc: 2 }} spacing={12}>
           <Box
             p={8}
             boxShadow="sm"
@@ -103,14 +103,15 @@ export default function ContainerAbout() {
       <Flex
         as="section"
         mt={12}
-        gap={24}
-        p={20}
+        gap={{ pc: 24, mo: 12 }}
+        p={{ pc: 20, mo: 4 }}
         border="1px solid"
         borderColor={"base.300"}
         borderRadius={"8px"}
         boxShadow="sm"
+        flexDirection={{ mo: "column", pc: "row" }}
       >
-        <Flex w="20%">
+        <Center>
           <Center flexDirection={"column"}>
             <ColorCard type="card" color={color[0]} />
             <Text
@@ -123,7 +124,7 @@ export default function ContainerAbout() {
               Example
             </Text>
           </Center>
-        </Flex>
+        </Center>
         <Box flex={1}>
           <Heading>Guide of Numbering</Heading>
           <Text fontSize={"lg"} mt={4}>
